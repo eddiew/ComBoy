@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ComBoy</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_load">Load</string>
+    <string name="action_save">Save</string>
+    <string name="action_new">New</string>
+
+</resources>
