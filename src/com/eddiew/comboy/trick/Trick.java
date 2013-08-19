@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Trick{
-	public String typeName, trickName, endName;
+	public String typeName, trickName, endName, transitionName;//the transition into this move
 	public ArrayList<String> validEnds;
 	public Trick(){
 		typeName = "";
@@ -23,6 +23,11 @@ public class Trick{
 	public ArrayList<String> getEnds(){
 		return validEnds;
 	}
+	
+	public void setTransitionName(String prevEnd){
+		transitionName = "Placeholder";
+	}
+	
 	//override to allow for custom naming / variations
 	public void complete(int difficulty){
 		int endIdx = new Random().nextInt(validEnds.size());

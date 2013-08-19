@@ -158,7 +158,7 @@ public class Combo extends ScrollView{
 				}
 			}
 			//Set the transition to this trick
-			
+			newTrick.setTransitionName(prevEnd);
 			//finish trick generation
 			newTrick.complete(random.nextInt(difficulty));
 			

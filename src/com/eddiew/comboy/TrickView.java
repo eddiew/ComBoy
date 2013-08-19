@@ -5,15 +5,17 @@ import com.eddiew.comboy.trick.Trick;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class TrickView extends RelativeLayout {
 	private Trick trickData;
 	private TextView nameView, transitionView;
+	private Button prefixButton, postfixButton;
 	private boolean isDetailedView;
 	public static enum TrickViewComponent {
-		NAMEVIEW(1), TRANSITIONVIEW(2);
+		NAMEVIEW(1), TRANSITIONVIEW(2), PREFIXBUTTON(3), POSTFIXBUTTON(4);
 		private final int id;
 		TrickViewComponent(int id){
 			this.id = id;
@@ -22,6 +24,31 @@ public class TrickView extends RelativeLayout {
 			return id;
 		}
 	}
+	private static final View.OnClickListener addTricksListener = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			//tell main activity to show an addtricks dialog at the TrickView's index (how to get index?)
+		}
+	};
+	private static final RelativeLayout.LayoutParams nameViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private static final RelativeLayout.LayoutParams transitionViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private static final RelativeLayout.LayoutParams prefixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private static final RelativeLayout.LayoutParams postfixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	static{
+		nameViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+		
+		transitionViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+		transitionViewParams.addRule(RelativeLayout.ABOVE, TrickViewComponent.NAMEVIEW.getId());
+		
+		prefixButtonParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+		prefixButtonParams.addRule(RelativeLayout.ABOVE, TrickViewComponent.TRANSITIONVIEW.getId());
+		
+		postfixButtonParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+		postfixButtonParams.addRule(RelativeLayout.BELOW, TrickViewComponent.NAMEVIEW.getId());
+	}
+
 	
 	public TrickView(Context context){
 		//if this constructor gets called the program fucked up. Throw something?
@@ -52,12 +79,10 @@ public class TrickView extends RelativeLayout {
 	}
 	public void setSummaryView(){
 		removeAllViews();
-		nameView = new TextView(getContext());
+		nameView = new TextView(getContext());//move this elsewhere
 		nameView.setId(TrickViewComponent.NAMEVIEW.getId());
 		nameView.setText(trickData.getTrickName());
-		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-		lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-		addView(nameView, lp);
+		addView(nameView, nameViewParams);
 		isDetailedView = false;
 		//TextView transitionView = new TextView(getContext());
 		//nameView.setText(trickData.trickName);
@@ -67,12 +92,21 @@ public class TrickView extends RelativeLayout {
 		//add transition name below trick name
 		transitionView = new TextView(getContext());
 		transitionView.setId(TrickViewComponent.TRANSITIONVIEW.getId());
-		transitionView.setText("Transition Placeholder");//have the combo figure out the transition
-		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-		lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
-		lp.addRule(RelativeLayout.BELOW,nameView.getId());
-		addView(transitionView, lp);
-		//add combo modification buttons
+		transitionView.setText(trickData.transitionName);
+		addView(transitionView, transitionViewParams);
+//		//add combo modification buttons
+//		//prefix stuff
+//		prefixButton = new Button(getContext());
+//		prefixButton.setId(TrickViewComponent.PREFIXBUTTON.getId());
+//		prefixButton.setText("Insert Trick(s)");
+//		prefixButton.setOnClickListener(addTricksListener);
+//		addView(prefixButton, prefixButtonParams);
+//		//postfix stuff
+//		postfixButton = new Button(getContext());
+//		postfixButton.setId(TrickViewComponent.POSTFIXBUTTON.getId());
+//		postfixButton.setText("Insert Trick(s)");
+//		postfixButton.setOnClickListener(addTricksListener);
+//		addView(postfixButton, postfixButtonParams);
 		isDetailedView = true;
 	}
 	public void addTrick(){
