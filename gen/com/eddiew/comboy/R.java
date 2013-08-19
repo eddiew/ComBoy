@@ -27,17 +27,19 @@ public final class R {
         public static final int ic_launcher=0x7f020003;
     }
     public static final class id {
-        public static final int action_load=0x7f080004;
-        public static final int action_new=0x7f080005;
-        public static final int action_save=0x7f080003;
+        public static final int action_load=0x7f080005;
+        public static final int action_new=0x7f080006;
+        public static final int action_save=0x7f080004;
         public static final int comboView=0x7f080000;
-        public static final int transitionName=0x7f080002;
-        public static final int trickName=0x7f080001;
+        public static final int length=0x7f080001;
+        public static final int transitionName=0x7f080003;
+        public static final int trickName=0x7f080002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int trick_view_detailed=0x7f030001;
-        public static final int trick_view_summary=0x7f030002;
+        public static final int addtricks_dialog=0x7f030001;
+        public static final int trick_view_detailed=0x7f030002;
+        public static final int trick_view_summary=0x7f030003;
     }
     public static final class menu {
         public static final int action_bar=0x7f070000;
@@ -48,6 +50,7 @@ public final class R {
         public static final int action_save=0x7f050003;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int length=0x7f050005;
     }
     public static final class style {
         /** 

@@ -6,11 +6,11 @@ public class Hook extends Trick {//include scoots here too?
 	public Hook() {
 		super();
 		typeName = "Hook";
-		validEnds.remove("Left");
+		validEnds.add("Hook");
 	}
 	@Override
 	public void complete(int difficulty){
-		endName = "Right";
+		endName = "Hook";
 		trickName = "Hook Kick";
 	}
 

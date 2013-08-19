@@ -48,28 +48,53 @@ public class Combo extends ScrollView{
 		ArrayList<String> left = new ArrayList<String>();
 		left.add("Cheat");
 		left.add("Gainer");
+		left.add("Gainer");
+		left.add("Gainer");
+		left.add("Gainer");
+		left.add("Hook");
 		left.add("Hook");
 		left.add("Pop");
-		//left.add("Raiz");
-		left.add("Swing");
 		validTypes.put("Left", left);
 		ArrayList<String> right = new ArrayList<String>();
 		right.add("Aerial");
 		right.add("Backside");
 		right.add("Butterfly");
-		right.add("Carry");
+		//right.add("Hook");//step-over
 		right.add("Raiz");
-		//right.add("Wrap");
+		right.add("Raiz");
+		right.add("Wrap");
 		validTypes.put("Right", right);
 		ArrayList<String> back = new ArrayList<String>();
 		back.add("Back");
 		back.add("Gainer");
-		//back.add("Backside");
+		back.add("Gainer");
 		validTypes.put("Back", back);
 		ArrayList<String> front = new ArrayList<String>();
 		front.add("Front");
 		front.add("Wrap");
 		validTypes.put("Front", front);
+		//other semi-duplicate endings
+		ArrayList<String> doubleleg = new ArrayList<String>();
+		doubleleg.add("Backside");
+		validTypes.put("Doubleleg", doubleleg);
+		ArrayList<String> round = new ArrayList<String>();
+		round.add("Cheat");
+		round.add("Cheat");
+		round.add("Hook");
+		round.add("Hook");
+		//round.add("Raiz");
+		round.add("Swing");
+		validTypes.put("Round", round);
+		ArrayList<String> hook = new ArrayList<String>();
+		hook.add("Aerial");
+		hook.add("Backside");
+		hook.add("Butterfly");
+		hook.add("Carry");
+		//right.add("Hook");//step-over
+		hook.add("Raiz");
+		hook.add("Raiz");
+		hook.add("Raiz");
+		validTypes.put("Hook", hook);
 	}
 	
 	public Combo(Context context){

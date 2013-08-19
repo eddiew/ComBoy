@@ -1,12 +1,15 @@
 package com.eddiew.comboy;
 
+import com.eddiew.comboy.AddTricksDialog.DialogListener;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity {
-	private Combo combo;
+public class MainActivity extends Activity implements DialogListener {
+	public Combo combo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,7 +22,8 @@ public class MainActivity extends Activity {
 		//else show a blank combo
 		combo = new Combo(this, 6);
 		setContentView(combo);
-		combo.addSequence(0,50);
+		showAddTricksDialog(0);
+		//combo.addSequence(0,50);
 	}
 
 	@Override
@@ -36,7 +40,8 @@ public class MainActivity extends Activity {
 			return true;
 		case R.id.action_new:
 			combo.clear();
-			combo.addSequence(0,25);
+			showAddTricksDialog(0);
+			//combo.addSequence(0,25);
 			return true;
 		case R.id.action_save:
 			return true;
@@ -47,6 +52,21 @@ public class MainActivity extends Activity {
 	@Override
 	public void onSaveInstanceState(Bundle outState){
 		super.onSaveInstanceState(outState);
+		
+	}
+	
+	public void showAddTricksDialog(int index){
+		DialogFragment addTricksDialogFragment = new AddTricksDialog();
+		Bundle args = new Bundle();
+		args.putInt("index", index);
+		addTricksDialogFragment.setArguments(args);
+		addTricksDialogFragment.show(getFragmentManager(), "addTricks");
+	}
+
+	@Override
+	public void onDialogPositiveClick(AddTricksDialog dialog) {
+		// TODO Auto-generated method stub
+		combo.addSequence(dialog.givenIndex, dialog.chosenLength);
 		
 	}
 }

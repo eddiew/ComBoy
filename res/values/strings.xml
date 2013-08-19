@@ -6,5 +6,6 @@
     <string name="action_load">Load</string>
     <string name="action_save">Save</string>
     <string name="action_new">New</string>
+    <string name="length">Combo Length</string>
 
 </resources>

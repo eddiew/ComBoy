@@ -8,6 +8,12 @@ public class Back extends Trick {
 		super();
 		typeName = "Back";
 		//validEnds.add("Back");
+		validEnds.add("Doubleleg");
+		validEnds.add("Hook");
+		validEnds.add("Left");
+		validEnds.add("Left");
+		validEnds.add("Right");
+		validEnds.add("Round");
 	}
 	
 	@Override
@@ -22,6 +28,15 @@ public class Back extends Trick {
 			else if(endName == "Right"){
 				trickName = "Flash Kick";
 			}
+			else if(endName == "Hook"){
+				trickName = "Flash Knife";
+			}
+			else if(endName == "Doubleleg"){
+				trickName = "Full Twist Doubleleg";//these are awkward. Force the move to change endings?
+			}
+			else if(endName == "Round"){
+				trickName = "Full Twist Round";
+			}
 			else {
 				boolean hands = new Random().nextBoolean();
 				if (hands) trickName = "Back Handspring";
@@ -33,6 +48,9 @@ public class Back extends Trick {
 			if(nSpins == 2) trickName += "Double ";
 			else if(nSpins == 3) trickName += "Triple ";
 			trickName += "Full Twist";
+			if(endName == "Doubleleg") trickName += " Doubleleg";
+			if(endName == "Hook") trickName += " Hyper Hook";
+			if(endName == "Round") trickName += " Round";
 		}
 	}
 }
