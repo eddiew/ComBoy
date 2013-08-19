@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class TrickView extends RelativeLayout {
+	private Combo container;
 	private Trick trickData;
 	private TextView nameView = new TextView(getContext()), transitionView = new TextView(getContext());
 	private Button prefixButton = new Button(getContext()), postfixButton = new Button(getContext());
@@ -62,8 +63,9 @@ public class TrickView extends RelativeLayout {
 		postfixButton.setOnClickListener(addTricksListener);
 	}
 	
-	public TrickView (Context context, Trick trickData){
+	public TrickView (Context context, Combo container, Trick trickData){
 		this(context);
+		this.container = container;
 		this.trickData = trickData;
 		refresh();
 		setSummaryView();

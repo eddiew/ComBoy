@@ -190,7 +190,7 @@ public class Combo extends ScrollView{
 			//add new trick to trick list
 			trickList.add(index+i, newTrick);
 			//create TrickView for new Trick
-			TrickView newView = new TrickView(getContext(), newTrick);
+			TrickView newView = new TrickView(getContext(), this, newTrick);
 			//add TrickView to scrollView
 			layout.addView(newView, index+i, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 			//bookkeeping stuff
