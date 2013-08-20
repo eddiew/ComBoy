@@ -8,9 +8,7 @@ import java.util.Random;
 import com.eddiew.comboy.trick.Trick;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -19,7 +17,7 @@ public class Combo extends ScrollView{
 	//variables for scrolling/view selection
 	private float downX, downY;
 	private int xPos = 0, yPos = 0;
-	private static final float maxPressTravel = 50;//distance in px
+	private static final float maxPressTravel = 32;//distance in px
 	//everything else
 	private Random random;
 	private ArrayList<Trick> trickList;
@@ -44,7 +42,7 @@ public class Combo extends ScrollView{
 		allTypes.add("Swing");
 		allTypes.add("Wrap");
 		
-		//valid types given an end. Modify this to include transitions?
+		//valid types given an end. Modify this to include transitions? Change lists of strings to lists of string, int (relative probability) pairs?
 		ArrayList<String> left = new ArrayList<String>();
 		left.add("Cheat");
 		left.add("Gainer");
@@ -80,14 +78,16 @@ public class Combo extends ScrollView{
 		ArrayList<String> round = new ArrayList<String>();
 		round.add("Cheat");
 		round.add("Cheat");
+		round.add("Cheat");
 		round.add("Hook");
 		round.add("Hook");
 		//round.add("Raiz");
+		left.add("Pop");
 		round.add("Swing");
 		validTypes.put("Round", round);
 		ArrayList<String> hook = new ArrayList<String>();
 		hook.add("Aerial");
-		hook.add("Backside");
+		//hook.add("Backside");
 		hook.add("Butterfly");
 		hook.add("Carry");
 		//right.add("Hook");//step-over
@@ -129,6 +129,7 @@ public class Combo extends ScrollView{
 			nextType = trickList.get(index).typeName;
 			hasNext = true;
 		}
+		ArrayList<Trick> newTricks = new ArrayList<Trick>(length);
 		for(int i = 0; i < length; i++){
 			//Generate a new trick
 			//Copy the list of all possible tricks
@@ -188,15 +189,19 @@ public class Combo extends ScrollView{
 			newTrick.complete(random.nextInt(difficulty));
 			
 			//add new trick to trick list
-			trickList.add(index+i, newTrick);
+			newTricks.add(newTrick);
 			//create TrickView for new Trick
-			TrickView newView = new TrickView(getContext(), this, newTrick);
+			TrickView newView = new TrickView(getContext(), layout, newTrick);
 			//add TrickView to scrollView
 			layout.addView(newView, index+i, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 			//bookkeeping stuff
 			hasPrev = true;
 			prevEnd = newTrick.endName;
 		}
+		trickList.addAll(index, newTricks);
+	}
+	public void addSequence(ListIterator<Trick> pos, int length){
+		addSequence(pos.nextIndex(), length);
 	}
 	public void clear(){
 		trickList.clear();

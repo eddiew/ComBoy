@@ -12,8 +12,10 @@ public class Pop extends Trick {
 	@Override
 	public void complete(int difficulty){
 		super.complete(difficulty);
-		int nSpins = difficulty/4;
-		int degrees = (nSpins+1)*360 + (endName == "Round"?180:0);
+		int nSpins = 2;
+		if(difficulty < 5) nSpins = 0;
+		else if(difficulty < 10) nSpins = 1;
+		int degrees = (nSpins+2)*360 + (endName == "Round"?180:0);
 		trickName = "Pop " + Integer.toString(degrees);
 	}
 

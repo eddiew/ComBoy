@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 
 public class AddTricksDialog extends DialogFragment {
@@ -52,21 +51,20 @@ public class AddTricksDialog extends DialogFragment {
         // Pass null as the parent view because it's going in the dialog layout
         final View dialogView = inflater.inflate(R.layout.addtricks_dialog, null);
         builder.setView(dialogView)
-        // Add action buttons
-               .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
-                       // FIRE ZE MISSILES!
-                	  //((MainActivity) getActivity()).combo.addSequence(getArguments().getInt("index"), Integer.parseInt(((EditText)(dialogView.findViewById(R.id.length))).getText().toString()));
-                	   chosenLength = Integer.parseInt(((EditText)(dialogView.findViewById(R.id.length))).getText().toString());
-                	   mListener.onDialogPositiveClick(AddTricksDialog.this);
-                   }
-               })
-               .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
-                       // User cancelled the dialog
-                	   dismiss();
-                   }
-               });
+        	.setTitle("Add Tricks")
+        	// Add action buttons
+            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int id) {
+	            	chosenLength = Integer.parseInt(((EditText)(dialogView.findViewById(R.id.length))).getText().toString());
+	                mListener.onDialogPositiveClick(AddTricksDialog.this);
+	            }
+            })
+            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            	public void onClick(DialogInterface dialog, int id) {
+            		// User cancelled the dialog
+                	dismiss();
+                }
+            });
         // Create the AlertDialog object and return it
         return builder.create();
     }

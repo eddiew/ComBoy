@@ -40,7 +40,7 @@ public class Aerial extends Trick {
 				if(nSpins == 2) trickName += "Double ";
 				else if(nSpins == 3) trickName += "Triple ";
 				trickName += "Aerial Twist";
-				if(endName == "Round") trickName += "Round";
+				if(endName == "Round") trickName += " Round";
 				else if(endName == "Hook") trickName += " Hyper Hook";
 			}
 		}

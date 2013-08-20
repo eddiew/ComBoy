@@ -41,8 +41,8 @@ public class Wrap extends Trick {
 			else if(nSpins == 3) trickName += "Triple ";
 			trickName += "Wrap Full";
 			if(endName == "Doubleleg") trickName += " Doubleleg";
-			if(endName == "Hook") trickName += " Hyper Hook";
-			if(endName == "Round") trickName += " Round";
+			else if(endName == "Hook") trickName += " Hyper Hook";
+			else if(endName == "Round") trickName += " Round";
 		}
 	}
 }

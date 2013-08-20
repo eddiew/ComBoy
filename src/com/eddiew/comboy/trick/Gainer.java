@@ -44,10 +44,12 @@ public class Gainer extends Trick {
 			if(endName == "Right") trickName = "Hyper ";
 			if(nSpins == 2) trickName += "Double ";
 			else if(nSpins == 3) trickName += "Triple ";
-			trickName += "Corkscrew";
-			if(endName == "Doubleleg") trickName += " Doubleleg";
-			if(endName == "Hook") trickName += " Hyper Hook";
-			if(endName == "Round") trickName += " Round";
+			if(endName == "Hook") trickName += "Boxcutter";
+			else{
+				trickName += "Corkscrew";
+				if(endName == "Doubleleg") trickName += " Doubleleg";
+				else if(endName == "Round") trickName += " Round";
+			}
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package com.eddiew.comboy;
 
 import com.eddiew.comboy.AddTricksDialog.DialogListener;
+import com.eddiew.comboy.TrickView.AddTricksListener;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -8,7 +9,7 @@ import android.app.DialogFragment;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity implements DialogListener {
+public class MainActivity extends Activity implements DialogListener, AddTricksListener{
 	public Combo combo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,5 +69,11 @@ public class MainActivity extends Activity implements DialogListener {
 		// TODO Auto-generated method stub
 		combo.addSequence(dialog.givenIndex, dialog.chosenLength);
 		
+	}
+
+	@Override
+	public void insertTricks(int index) {
+		// TODO Auto-generated method stub
+		showAddTricksDialog(index);
 	}
 }
