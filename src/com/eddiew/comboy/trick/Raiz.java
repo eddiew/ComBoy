@@ -8,54 +8,42 @@ public class Raiz extends Trick {
 		super();
 		typeName = "Raiz";
 		validEnds.add("Back");
-		validEnds.add("Back");
+		validEnds.add("Carry");
 		validEnds.add("Doubleleg");
-		validEnds.add("Hook");
-		validEnds.add("Left");
 		validEnds.add("Left");
 		validEnds.add("Right");
-		validEnds.add("Round");
+		validEnds.add("Step");
+		validEnds.add("Swing");
+		validEnds.add("Swing");
+		validEnds.add("Swing");
+		validEnds.add("Swing");
 	}
 	@Override
 	public void complete(int difficulty){
 		super.complete(difficulty);
 		trickName = "";
 		int nSpins = difficulty/3;
-		if(endName == "Back"){
-			int nHands = new Random().nextInt(3);
+		if(endName == "Back" || endName == "Swing"){//nobody's going to do a snapu -> double full. Right?
+			int nHands = new Random().nextInt(4);
 			if (nHands == 0) trickName = "Raiz";
-			else if (nHands == 1) trickName = "Touchdown Raiz";//no love for sailor moon
+			else if(nHands < 3) trickName = "Touchdown Raiz";
 			else trickName = "Gumbi";
 		}
+		else if(nSpins == 0 || nSpins == 1){
+			if(endName == "Back" || endName == "Swing"){
+				int nHands = new Random().nextInt(4);
+				if (nHands == 0) trickName = "Raiz";
+				else if(nHands < 3) trickName = "Touchdown Raiz";
+				else trickName = "Gumbi";
+			}
+			else if(endName == "Carry" || endName == "Right" || endName == "Step") trickName = "Sideswipe";
+			else if(endName == "Doubleleg") trickName = "Envergado";
+			else if(endName == "Left") trickName = "Raiz";
+		}
 		else{
-			if(nSpins == 0 || nSpins == 1){
-				if(endName == "Right"){
-					trickName = "Sideswipe";
-				}
-				else if(endName == "Hook"){
-					trickName = "Swipeknife";
-				}
-				else if(endName == "Doubleleg"){
-					trickName = "Envergado";//these are awkward. Force the move to change endings?
-				}
-				else if(endName == "Round"){
-					trickName = "Raiz";
-				}
-				else {//Left
-					int nHands = new Random().nextInt(3);
-					if (nHands == 0) trickName = "Raiz";
-					else if (nHands == 1) trickName = "Touchdown Raiz";//no love for sailor moon
-					else trickName = "Gumbi";
-				}
-			}
-			else{
-				int degrees = nSpins*360;
-				if(endName == "Right") trickName = "Hyper ";
-				trickName += "Cheat " + Integer.toString(degrees) + " Twist";
-				if(endName == "Doubleleg") trickName += " Doubleleg";
-				else if(endName == "Hook") trickName += " Hyper Hook";
-				else if(endName == "Round") trickName += " Round";
-			}
+			if(endName == "Right" || endName == "Step" || endName == "Carry") trickName = "Hyper ";
+			trickName += "Cheat " + Integer.toString(nSpins*360) + " Twist";
+			if(endName == "Doubleleg") trickName += " Doubleleg";
 		}
 	}
 }

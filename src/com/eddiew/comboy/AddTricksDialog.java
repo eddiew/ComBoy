@@ -50,12 +50,20 @@ public class AddTricksDialog extends DialogFragment {
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because it's going in the dialog layout
         final View dialogView = inflater.inflate(R.layout.addtricks_dialog, null);
+        final EditText lengthField = (EditText)(dialogView.findViewById(R.id.length));
+        lengthField.setText("6");
+        lengthField.setSelection(1);
         builder.setView(dialogView)
         	.setTitle("Add Tricks")
         	// Add action buttons
             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int id) {
-	            	chosenLength = Integer.parseInt(((EditText)(dialogView.findViewById(R.id.length))).getText().toString());
+	            	try{
+	            		chosenLength = Integer.parseInt(lengthField.getText().toString());
+	            	}
+	            	catch(Exception e){
+	            		chosenLength = 0;
+	            	}
 	                mListener.onDialogPositiveClick(AddTricksDialog.this);
 	            }
             })
@@ -68,9 +76,4 @@ public class AddTricksDialog extends DialogFragment {
         // Create the AlertDialog object and return it
         return builder.create();
     }
-//	@Override
-//	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-//		View dialogView = inflater.inflate(R.layout.addtricks_dialog, container, false);
-//		
-//	}
 }

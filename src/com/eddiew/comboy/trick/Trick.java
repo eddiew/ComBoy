@@ -27,8 +27,8 @@ public class Trick{
 		return validEnds;
 	}
 	
-	public void setTransitionName(String prevEnd){
-		transitionName = "Placeholder";
+	public void setTransitionName(String transition){
+		transitionName = transition;
 	}
 	
 	//override to allow for custom naming / variations

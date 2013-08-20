@@ -6,7 +6,8 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,7 +15,7 @@ public class TrickView extends RelativeLayout {
 	private ViewGroup container;
 	private Trick trickData;
 	private TextView nameView = new TextView(getContext()), transitionView = new TextView(getContext());
-	private Button prefixButton = new Button(getContext()), postfixButton = new Button(getContext());
+	private ImageButton prefixButton = new ImageButton(getContext()), postfixButton = new ImageButton(getContext());
 	private View separator = new View(getContext());
 	private boolean isDetailedView;
 	private static final int NAMEVIEWID = 0xBEEF, TRANSITIONVIEWID = 0xBEF0, PREFIXBUTTONID = 0xBEF1, POSTFIXBUTTONID = 0xBEF2;
@@ -33,26 +34,24 @@ public class TrickView extends RelativeLayout {
 		}
 	};
 	private static final RelativeLayout.LayoutParams summaryParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	private static final RelativeLayout.LayoutParams nameViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private static final RelativeLayout.LayoutParams nameViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 	private static final RelativeLayout.LayoutParams transitionViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	private static final RelativeLayout.LayoutParams prefixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	private static final RelativeLayout.LayoutParams postfixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private static final RelativeLayout.LayoutParams prefixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private static final RelativeLayout.LayoutParams postfixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 	private static final RelativeLayout.LayoutParams separatorParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 	
 	static {
 		summaryParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 		
 		nameViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-		nameViewParams.addRule(RelativeLayout.BELOW, TRANSITIONVIEWID);
+		nameViewParams.addRule(RelativeLayout.BELOW, PREFIXBUTTONID);
 		
-		transitionViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-		transitionViewParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		transitionViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+		transitionViewParams.addRule(RelativeLayout.BELOW,PREFIXBUTTONID);
 		
-		prefixButtonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		prefixButtonParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
 		
-		postfixButtonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-		postfixButtonParams.addRule(RelativeLayout.BELOW, PREFIXBUTTONID);
+		postfixButtonParams.addRule(RelativeLayout.BELOW, NAMEVIEWID);
 		
 		separatorParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 	}
@@ -78,11 +77,15 @@ public class TrickView extends RelativeLayout {
 		transitionView.setId(TRANSITIONVIEWID);
 		//prefix button
 		prefixButton.setId(PREFIXBUTTONID);
-		prefixButton.setText("Insert Tricks Before");
+		prefixButton.setImageResource(R.drawable.ic_action_new);
+		prefixButton.setMaxHeight(12);
+		prefixButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 		prefixButton.setOnClickListener(addTricksListener);
 		//postfix button
 		postfixButton.setId(POSTFIXBUTTONID);
-		postfixButton.setText("Insert Tricks After");
+		postfixButton.setImageResource(R.drawable.ic_action_new);
+		postfixButton.setMaxHeight(12);
+		postfixButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 		postfixButton.setOnClickListener(addTricksListener);
 		//separator
 		separator.setBackgroundColor(0xff000000);

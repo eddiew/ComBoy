@@ -21,7 +21,7 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 		if(savedInstanceState != null) return;
 			//load it
 		//else show a blank combo
-		combo = new Combo(this, 6);
+		combo = new Combo(this, 3);
 		setContentView(combo);
 		showAddTricksDialog(0);
 		//combo.addSequence(0,50);
@@ -53,7 +53,6 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 	@Override
 	public void onSaveInstanceState(Bundle outState){
 		super.onSaveInstanceState(outState);
-		
 	}
 	
 	public void showAddTricksDialog(int index){

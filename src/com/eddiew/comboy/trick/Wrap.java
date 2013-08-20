@@ -6,12 +6,12 @@ public class Wrap extends Trick {
 		super();
 		typeName = "Wrap";
 		//validEnds.add("Back");
+		validEnds.add("Carry");
 		validEnds.add("Doubleleg");
-		validEnds.add("Hook");
-		validEnds.add("Left");
 		validEnds.add("Left");
 		validEnds.add("Right");
-		validEnds.add("Round");
+		validEnds.add("Step");
+		validEnds.add("Swing");
 	}
 	@Override
 	public void complete(int difficulty){
@@ -19,30 +19,17 @@ public class Wrap extends Trick {
 		trickName = "";
 		int nSpins = difficulty/3;
 		if(nSpins == 0){
-			if(endName == "Right"){
-				trickName = "Grandmaster Swipe";//Put something better here?
-			}
-			else if(endName == "Hook"){
-				trickName = "Grandmaster Swipe Knife";
-			}
-			else if(endName == "Doubleleg"){
-				trickName = "Wrap Full Twist Doubleleg";
-			}
-			else if(endName == "Round"){
-				trickName = "Wrap Full Twist Round";
-			}
-			else {
-				trickName = "Wrap Full";
-			}
+			if(endName == "Back" || endName == "Left" || endName == "Swing") trickName = "Wrap Full Twist";
+			else if(endName == "Carry") trickName = "Hyper Wrap Full";//
+			else if(endName == "Right" || endName == "Step") trickName = "Grandmaster Swipe";//
+			else if(endName == "Doubleleg") trickName = "Wrap Full Twist Doubleleg";//
 		}
 		else{
-			if(endName == "Right") trickName = "Hyper ";
+			if(endName == "Right" || endName == "Step" || endName == "Carry") trickName = "Hyper ";
 			if(nSpins == 2) trickName += "Double ";
 			else if(nSpins == 3) trickName += "Triple ";
-			trickName += "Wrap Full";
+			trickName += "Wrap Full Twist";
 			if(endName == "Doubleleg") trickName += " Doubleleg";
-			else if(endName == "Hook") trickName += " Hyper Hook";
-			else if(endName == "Round") trickName += " Round";
 		}
 	}
 }

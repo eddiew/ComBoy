@@ -8,16 +8,17 @@ import java.util.Random;
 import com.eddiew.comboy.trick.Trick;
 
 import android.content.Context;
+import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-public class Combo extends ScrollView{
+public class Combo extends ScrollView implements OnGestureListener{
 	//variables for scrolling/view selection
-	private float downX, downY;
-	private int xPos = 0, yPos = 0;
-	private static final float maxPressTravel = 32;//distance in px
+	private GestureDetector gestureDetector;
+	private float prevY;
 	//everything else
 	private Random random;
 	private ArrayList<Trick> trickList;
@@ -26,6 +27,7 @@ public class Combo extends ScrollView{
 	private static final String trickClassPackage = "com.eddiew.comboy.trick.";
 	private static final ArrayList<String> allTypes = new ArrayList<String>();
 	private static final HashMap<String, ArrayList<String>> validTypes = new HashMap<String, ArrayList<String>>();
+	private static final HashMap<String, String> actualTransitionNames = new HashMap<String, String>();
 	static{
 		//list of all tricks
 		allTypes.add("Aerial");
@@ -42,59 +44,74 @@ public class Combo extends ScrollView{
 		allTypes.add("Swing");
 		allTypes.add("Wrap");
 		
-		//valid types given an end. Modify this to include transitions? Change lists of strings to lists of string, int (relative probability) pairs?
-		ArrayList<String> left = new ArrayList<String>();
+		//valid types given a transition. Change lists of strings to lists of string, int (relative probability) pairs?
+		ArrayList<String> left = new ArrayList<String>();//vanish
 		left.add("Cheat");
-		left.add("Gainer");
-		left.add("Gainer");
-		left.add("Gainer");
-		left.add("Gainer");
-		left.add("Hook");
-		left.add("Hook");
+		left.add("Cheat");
+		left.add("Cheat");
 		left.add("Pop");
+		left.add("Raiz");
+		left.add("Swing");
 		validTypes.put("Left", left);
-		ArrayList<String> right = new ArrayList<String>();
+		actualTransitionNames.put("Left", "Vanish");
+		
+		ArrayList<String> right = new ArrayList<String>();//vanish
 		right.add("Aerial");
 		right.add("Backside");
 		right.add("Butterfly");
-		//right.add("Hook");//step-over
-		right.add("Raiz");
-		right.add("Raiz");
-		right.add("Wrap");
 		validTypes.put("Right", right);
+		actualTransitionNames.put("Right", "Vanish");
+		
+		ArrayList<String> swing = new ArrayList<String>();
+		swing.add("Gainer");
+		validTypes.put("Swing", swing);
+		actualTransitionNames.put("Swing", "Swing Through");
+		
+		ArrayList<String> carry = new ArrayList<String>();
+		carry.add("Wrap");
+		carry.add("Raiz");
+		validTypes.put("Carry", carry);
+		actualTransitionNames.put("Carry", "Carry Through");
+		
 		ArrayList<String> back = new ArrayList<String>();
 		back.add("Back");
-		back.add("Gainer");
-		back.add("Gainer");
 		validTypes.put("Back", back);
+		actualTransitionNames.put("Back", "Punch");
+		
 		ArrayList<String> front = new ArrayList<String>();
 		front.add("Front");
-		front.add("Wrap");
 		validTypes.put("Front", front);
-		//other semi-duplicate endings
-		ArrayList<String> doubleleg = new ArrayList<String>();
+		actualTransitionNames.put("Front", "Punch");
+		
+		//Step-transitions
+		ArrayList<String> step = new ArrayList<String>();//right foot step
+		step.add("Raiz");
+		//step.add("Cheat");
+		//step.add("Hook");//step-over
+		validTypes.put("Step",step);
+		actualTransitionNames.put("Step", "Step");
+		
+		ArrayList<String> lStep = new ArrayList<String>();
+		lStep.add("Hook");
+		validTypes.put("Hook", lStep);
+		actualTransitionNames.put("Hook", "Step");
+		
+		//rarer, non-inverted transitions
+		ArrayList<String> doubleleg = new ArrayList<String>();//non-inverted back-punch
 		doubleleg.add("Backside");
 		validTypes.put("Doubleleg", doubleleg);
-		ArrayList<String> round = new ArrayList<String>();
-		round.add("Cheat");
-		round.add("Cheat");
-		round.add("Cheat");
-		round.add("Hook");
-		round.add("Hook");
-		//round.add("Raiz");
-		left.add("Pop");
-		round.add("Swing");
-		validTypes.put("Round", round);
-		ArrayList<String> hook = new ArrayList<String>();
-		hook.add("Aerial");
-		//hook.add("Backside");
-		hook.add("Butterfly");
-		hook.add("Carry");
-		//right.add("Hook");//step-over
-		hook.add("Raiz");
-		hook.add("Raiz");
-		hook.add("Raiz");
-		validTypes.put("Hook", hook);
+		actualTransitionNames.put("Doubleleg", "Punch");
+		
+		ArrayList<String> wrap = new ArrayList<String>();//non-inverted carry
+		wrap.add("Carry");
+		validTypes.put("Wrap", wrap);
+		actualTransitionNames.put("Wrap", "Wrap Through");
+		
+		ArrayList<String> vSwing = new ArrayList<String>();//non-inverted swing
+		vSwing.add("Swing");
+		validTypes.put("vSwing", vSwing);
+		actualTransitionNames.put("vSwing", "Swing Through");
+		
 	}
 	
 	public Combo(Context context){
@@ -104,6 +121,7 @@ public class Combo extends ScrollView{
 		layout = new LinearLayout(context);
 		layout.setOrientation(LinearLayout.VERTICAL);
 		addView(layout);
+		gestureDetector = new GestureDetector(context, this);
 		this.difficulty = 10;
 	}
 	
@@ -115,6 +133,13 @@ public class Combo extends ScrollView{
 	//allows user to manually add a move
 	public void addTrick(int index){
 		//check if new move is valid (check prev move -> this move -> next move)
+	}
+	
+	private int gaussianDifficulty(int difficulty){
+		int rawDifficulty = difficulty+(int)random.nextGaussian()*2;
+		if(rawDifficulty < 0) rawDifficulty = 0;
+		if(rawDifficulty > 10) rawDifficulty = 10;
+		return rawDifficulty;
 	}
 	
 	//adds a computer-generated combo of the specified length at the specified index. Offload this to its own thread?
@@ -184,11 +209,11 @@ public class Combo extends ScrollView{
 				}
 			}
 			//Set the transition to this trick
-			newTrick.setTransitionName(prevEnd);
+			newTrick.setTransitionName(actualTransitionNames.get(prevEnd));
 			//finish trick generation
-			newTrick.complete(random.nextInt(difficulty));
+			newTrick.complete(gaussianDifficulty(difficulty));
 			
-			//add new trick to trick list
+			//add new trick to new trick list
 			newTricks.add(newTrick);
 			//create TrickView for new Trick
 			TrickView newView = new TrickView(getContext(), layout, newTrick);
@@ -198,6 +223,7 @@ public class Combo extends ScrollView{
 			hasPrev = true;
 			prevEnd = newTrick.endName;
 		}
+		//insert new tricks to trick list
 		trickList.addAll(index, newTricks);
 	}
 	public void addSequence(ListIterator<Trick> pos, int length){
@@ -207,35 +233,50 @@ public class Combo extends ScrollView{
 		trickList.clear();
 		layout.removeAllViews();
 	}
-	//Touch event handling (Scroll vs TrickView Toggle vs Button Press)
-	//Is there scroll code I can copypasta?
+	//Touch event handling
 	@Override
 	public boolean onTouchEvent(MotionEvent event){
-		switch(event.getAction()){
-		case MotionEvent.ACTION_UP:
-			yPos += (int)(downY - event.getY());
-			//smooth scroll here?
-			return true;
-		default:
-			smoothScrollTo(0,yPos + (int)(downY - event.getY()));//remember, Y values are flipped (0 is top)
-			return true;
-		}
+		return gestureDetector.onTouchEvent(event);
 	}
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent event){
-		switch(event.getAction()){
-		case MotionEvent.ACTION_DOWN:
-			downX = event.getX();
-			downY = event.getY();
-			return false;
-		default:
-			//if the finger has moved considerably in the Y axis
-			if(Math.abs(event.getY()-downY) > maxPressTravel){
-				//Handle this gesture as a scroll
-				return true;
-			}
-			//if not, don't hijack this event yet
-			return false;
-		}
+		return gestureDetector.onTouchEvent(event);
+	}
+
+	@Override
+	public boolean onDown(MotionEvent event) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onFling(MotionEvent arg0, MotionEvent arg1, float vX, float vY) {
+		fling((int)-vY);
+		prevY = -1;
+		return true;
+	}
+
+	@Override
+	public void onLongPress(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean onScroll(MotionEvent motionStart, MotionEvent event, float arg2, float arg3) {
+		if(prevY == -1) prevY = motionStart.getY();
+		smoothScrollBy(0,(int)(prevY - event.getY()));
+		prevY = event.getY();
+		return true;
+	}
+
+	@Override
+	public void onShowPress(MotionEvent event) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean onSingleTapUp(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

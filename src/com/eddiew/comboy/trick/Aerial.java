@@ -7,14 +7,13 @@ public class Aerial extends Trick {
 	public Aerial(){
 		super();
 		typeName = "Aerial";
-//		validEnds.add("Back");
-		validEnds.add("Front");//because this is so much more common
+		validEnds.add("Back");
+		validEnds.add("Carry");
 		validEnds.add("Front");
-		validEnds.add("Front");
-		validEnds.add("Hook");
 		validEnds.add("Left");
-		validEnds.add("Left");
-		validEnds.add("Round");
+		validEnds.add("Right");
+		validEnds.add("Step");
+		validEnds.add("Swing");
 	}
 	
 	@Override
@@ -22,26 +21,27 @@ public class Aerial extends Trick {
 		super.complete(difficulty);
 		trickName = "";
 		int nSpins = difficulty/3;
-		if(endName == "Front" || (endName == "Right" && nSpins == 0)){
+		if(endName == "Front" || (endName == "Carry" && nSpins == 0)){
 			int nHands = new Random().nextInt(10);//frequency: cartwheel > aerial > vanek
 			if (nHands < 3) trickName = "Aerial";
 			else if(nHands < 5) trickName = "Vanek";
 			else trickName = "Cartwheel";
 		}
+		else if(endName == "Back"){
+			int nHands = new Random().nextInt(10);
+			if(nHands < 3) trickName = "Roundoff";
+			else trickName = "Brandy";
+		}
 		else{
 			if(nSpins == 0){
-				if(endName == "Left") trickName = "Aerial Switch";
-				else if(endName == "Round") trickName = "Aerial Twist Round";
-				else if(endName == "Right") ;
-				else if(endName == "Hook") trickName = "Aerial Knife";
+				if(endName == "Left" || endName == "Swing") trickName = "Aerial Switch";
+				else if(endName == "Right" || endName == "Step") trickName = "Aerial";//somehow make this less common
 			}
 			else{
-				if(endName == "Right") trickName = "Hyper ";
+				if(endName == "Right" || endName == "Step") trickName = "Hyper ";
 				if(nSpins == 2) trickName += "Double ";
 				else if(nSpins == 3) trickName += "Triple ";
 				trickName += "Aerial Twist";
-				if(endName == "Round") trickName += " Round";
-				else if(endName == "Hook") trickName += " Hyper Hook";
 			}
 		}
 	}
