@@ -11,11 +11,6 @@ public class Trick{
 		trickName = "";
 		endName = "";
 		validEnds = new ArrayList<String>();
-//		validEnds.add("Doubleleg");
-//		validEnds.add("Hook");
-//		validEnds.add("Left");
-//		validEnds.add("Right");
-//		validEnds.add("Round");
 	}
 	public String getTrickName(){
 		return trickName;
