@@ -16,7 +16,6 @@ public class Raiz extends Trick {
 		validEnds.add("Swing");
 		validEnds.add("Swing");
 		validEnds.add("Swing");
-		validEnds.add("Swing");
 	}
 	@Override
 	public void complete(int difficulty){

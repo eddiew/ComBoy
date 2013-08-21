@@ -10,6 +10,7 @@ public class Trick{
 		typeName = "";
 		trickName = "";
 		endName = "";
+		transitionName = "";
 		validEnds = new ArrayList<String>();
 	}
 	public String getTrickName(){

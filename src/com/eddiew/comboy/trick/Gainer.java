@@ -15,7 +15,6 @@ public class Gainer extends Trick {
 		validEnds.add("Swing");
 		validEnds.add("Swing");
 		validEnds.add("Swing");
-		validEnds.add("Swing");
 	}
 	
 	@Override

@@ -48,10 +48,8 @@ public class Combo extends ScrollView implements OnGestureListener{
 		ArrayList<String> left = new ArrayList<String>();//vanish
 		left.add("Cheat");
 		left.add("Cheat");
-		left.add("Cheat");
 		left.add("Pop");
 		left.add("Raiz");
-		left.add("Swing");
 		validTypes.put("Left", left);
 		actualTransitionNames.put("Left", "Vanish");
 		
@@ -136,10 +134,32 @@ public class Combo extends ScrollView implements OnGestureListener{
 	}
 	
 	private int gaussianDifficulty(int difficulty){
-		int rawDifficulty = difficulty+(int)random.nextGaussian()*2;
+		int rawDifficulty = (int)random.nextInt(difficulty);
 		if(rawDifficulty < 0) rawDifficulty = 0;
 		if(rawDifficulty > 10) rawDifficulty = 10;
 		return rawDifficulty;
+	}
+	
+	private boolean canFlow(String end, String type){
+		return validTypes.get(end).contains(type);
+	}
+	
+	private boolean canFlowTypes(String typeA, String typeB){
+		//create a Trick from type
+		Trick testTrick;
+		try {
+			testTrick = (Trick)(Class.forName(trickClassPackage + typeA).getConstructor().newInstance());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		//test if this particular type can flow into the nextType
+		for(String end : testTrick.validEnds){
+			return canFlow(end, typeB);
+		}
+		return false;
 	}
 	
 	//adds a computer-generated combo of the specified length at the specified index. Offload this to its own thread?
@@ -154,41 +174,34 @@ public class Combo extends ScrollView implements OnGestureListener{
 			nextType = trickList.get(index).typeName;
 			hasNext = true;
 		}
+		boolean tryAgain = true;
 		ArrayList<Trick> newTricks = new ArrayList<Trick>(length);
+		while(tryAgain){
+			newTricks = new ArrayList<Trick>(length);
 		for(int i = 0; i < length; i++){
 			//Generate a new trick
-			//Copy the list of all possible tricks
 			ArrayList<String> possibleTypes = new ArrayList<String>();
-			for(String type : allTypes){
-				//Consider only the types that flow from previous End
-				if(!hasPrev || validTypes.get(prevEnd).contains(type)){
-					//if we're not worrying about flowing into types, then just add the type to the list
-					if(i != length-1 || !hasNext){
+			//get the previous transition's list of valid tricks if it exists
+			if(hasPrev){
+				for(String type : validTypes.get(prevEnd)){
+					if(i != length-1 || !hasNext || canFlowTypes(type, nextType)){
 						possibleTypes.add(type);
-					}
-					//if we are, then we need to check that this type flows into the next type
-					else{
-						//create a Trick from type
-						Trick testTrick;
-						try {
-							testTrick = (Trick)(Class.forName(trickClassPackage + type).getConstructor().newInstance());
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							return;
-						}
-						
-						//test if this particular type can flow into the nextType
-						for(String end : testTrick.validEnds){
-							if(validTypes.get(end).contains(nextType)){
-								possibleTypes.add(type);
-								break;
-							}
-						}
 					}
 				}
 			}
-			
+			//otherwise just choose from all types
+			else{
+				for(String type : allTypes){
+					if(i != length-1 || !hasNext || canFlowTypes(type, nextType)){
+						possibleTypes.add(type);
+					}
+				}
+			}
+			if(possibleTypes.isEmpty()){
+				tryAgain = true;
+				break;
+			}
+			else tryAgain = false;
 			//make the new trick of a randomly picked, valid type
 			int classIdx = random.nextInt(possibleTypes.size());
 			String trickClass = trickClassPackage + possibleTypes.get(classIdx);
@@ -223,11 +236,9 @@ public class Combo extends ScrollView implements OnGestureListener{
 			hasPrev = true;
 			prevEnd = newTrick.endName;
 		}
+		}
 		//insert new tricks to trick list
 		trickList.addAll(index, newTricks);
-	}
-	public void addSequence(ListIterator<Trick> pos, int length){
-		addSequence(pos.nextIndex(), length);
 	}
 	public void clear(){
 		trickList.clear();
