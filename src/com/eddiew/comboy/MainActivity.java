@@ -23,12 +23,20 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 		//load settings
         //file = new File(this.getExternalFilesDir(null));
 		//if a saved state exists (previous combo)
-		if(savedInstanceState != null) return;
+		//if(savedInstanceState != null) return;
 			//load it
 		//else show a blank combo
 		combo = new Combo(this);
-		setContentView(combo);
 		showAddTricksDialog(0);
+	}
+	@Override
+	public void onResume(){
+		super.onResume();
+		setContentView(combo);
+	}
+	@Override
+	public void onPause(){
+		super.onPause();
 	}
 
 	@Override
@@ -38,6 +46,7 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 		
 		return super.onCreateOptionsMenu(menu);
 	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch(item.getItemId()){
