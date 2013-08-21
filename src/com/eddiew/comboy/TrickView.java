@@ -33,20 +33,23 @@ public class TrickView extends RelativeLayout {
 			else if(v.getId() == POSTFIXBUTTONID) listener.insertTricks(container.indexOfChild(TrickView.this)+1);
 		}
 	};
-	private static final RelativeLayout.LayoutParams summaryParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	private static final RelativeLayout.LayoutParams nameViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	private static final RelativeLayout.LayoutParams transitionViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	private static final RelativeLayout.LayoutParams prefixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	private static final RelativeLayout.LayoutParams postfixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	private static final RelativeLayout.LayoutParams separatorParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private RelativeLayout.LayoutParams summaryParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private RelativeLayout.LayoutParams nameViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private RelativeLayout.LayoutParams transitionViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private RelativeLayout.LayoutParams transitionSummaryParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private RelativeLayout.LayoutParams prefixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private RelativeLayout.LayoutParams postfixButtonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	private RelativeLayout.LayoutParams separatorParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 	
-	static {
+	{
 		summaryParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 		
 		nameViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 		nameViewParams.addRule(RelativeLayout.BELOW, PREFIXBUTTONID);
 		
-		transitionViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+		transitionSummaryParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+		
+		transitionViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 		transitionViewParams.addRule(RelativeLayout.BELOW,PREFIXBUTTONID);
 		
 		prefixButtonParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
@@ -58,7 +61,7 @@ public class TrickView extends RelativeLayout {
 
 	
 	public TrickView(Context context){
-		//if this constructor gets called the program fucked up. Throw something?
+		//if this constructor gets directly called the program fucked up
 		super(context);
 		this.trickData = new Trick();
 		try{
@@ -72,9 +75,11 @@ public class TrickView extends RelativeLayout {
 		//nameView
 		nameView.setId(NAMEVIEWID);
 		nameView.setTextSize(24);
-		nameView.setPadding(16,24,16,24);
+		nameView.setPadding(16,36,16,12);
 		//transitionView
 		transitionView.setId(TRANSITIONVIEWID);
+		transitionView.setPadding(8,8,8,8);
+		//transitionView.setTextAlignment(TEXT_ALIGNMENT_VIEW_END);
 		//prefix button
 		prefixButton.setId(PREFIXBUTTONID);
 		prefixButton.setImageResource(R.drawable.ic_action_new);
@@ -122,6 +127,7 @@ public class TrickView extends RelativeLayout {
 		removeAllViews();
 		setBackgroundColor(0xffffffff);
 		addView(nameView, summaryParams);
+		addView(transitionView, transitionSummaryParams);
 		addView(separator, separatorParams);
 		isDetailedView = false;
 	}
