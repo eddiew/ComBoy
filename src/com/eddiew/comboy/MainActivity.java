@@ -24,7 +24,6 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 		combo = new Combo(this, 3);
 		setContentView(combo);
 		showAddTricksDialog(0);
-		//combo.addSequence(0,50);
 	}
 
 	@Override
@@ -42,7 +41,6 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 		case R.id.action_new:
 			combo.clear();
 			showAddTricksDialog(0);
-			//combo.addSequence(0,25);
 			return true;
 		case R.id.action_save:
 			return true;
@@ -66,7 +64,7 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 	@Override
 	public void onDialogPositiveClick(AddTricksDialog dialog) {
 		// TODO Auto-generated method stub
-		combo.addSequence(dialog.givenIndex, dialog.chosenLength);
+		combo.addTricks(dialog.givenIndex, dialog.chosenLength);
 		
 	}
 

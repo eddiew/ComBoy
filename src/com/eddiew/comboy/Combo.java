@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
 import java.util.Random;
+import java.util.Stack;
 
 import com.eddiew.comboy.trick.Trick;
 
@@ -11,7 +12,6 @@ import android.content.Context;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -22,6 +22,7 @@ public class Combo extends ScrollView implements OnGestureListener{
 	//everything else
 	private Random random;
 	private ArrayList<Trick> trickList;
+	private Stack<Trick> newTricks;
 	private int difficulty;
 	private LinearLayout layout;
 	private static final String trickClassPackage = "com.eddiew.comboy.trick.";
@@ -47,9 +48,7 @@ public class Combo extends ScrollView implements OnGestureListener{
 		//valid types given a transition. Change lists of strings to lists of string, int (relative probability) pairs?
 		ArrayList<String> left = new ArrayList<String>();//vanish
 		left.add("Cheat");
-		left.add("Cheat");
 		left.add("Pop");
-		left.add("Raiz");
 		validTypes.put("Left", left);
 		actualTransitionNames.put("Left", "Vanish");
 		
@@ -162,6 +161,83 @@ public class Combo extends ScrollView implements OnGestureListener{
 		return false;
 	}
 	
+	private boolean makeSequence(String prevEnd, String nextType, int length){
+		if(length == 0){
+			if(nextType != null) return canFlow(newTricks.peek().endName, nextType);
+			else return true;
+		}
+		ArrayList<String> possibleTypes = new ArrayList<String>();
+		if(prevEnd != null){
+			for(String type : validTypes.get(prevEnd)){
+				possibleTypes.add(type);
+			}
+		}
+		else {
+			for(String type : allTypes){
+				possibleTypes.add(type);
+			}
+		}
+		while(!possibleTypes.isEmpty()){
+			int typeIdx = random.nextInt(possibleTypes.size());
+			String trickType = possibleTypes.get(typeIdx);
+			possibleTypes.remove(trickType);
+			Trick newTrick = new Trick();
+			try {
+				newTrick = (Trick)(Class.forName(trickClassPackage + trickType).getConstructor().newInstance());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//get list of valid endings
+			ArrayList<String> ends = new ArrayList<String>();
+			for(String end : newTrick.validEnds){
+				if(length != 1 || nextType == null || canFlow(end, nextType)){
+					ends.add(end);
+				}
+			}
+			while(!ends.isEmpty()){
+				String end = ends.get(random.nextInt(ends.size()));
+				ends.remove(end);
+				//do the bare minimum to ensure trick flow
+				newTrick.endName = end;
+				newTrick.setTransitionName(actualTransitionNames.get(prevEnd));//this doesn't need to be here, but it's not as easy to do anywhere else
+				newTricks.push(newTrick);
+				if(makeSequence(newTrick.endName, nextType, length-1)){
+					return true;
+				}
+				else{
+					newTricks.pop();
+				}
+			}
+		}
+		return false;
+	}
+	
+	public void addTricks(int index, int length){
+		newTricks = new Stack<Trick>();
+		String prevEnd = null, nextType = null;
+		if(index != 0){
+			prevEnd = trickList.get(index-1).endName;
+		}
+		if(index < trickList.size()-1){
+			nextType = trickList.get(index).typeName;
+		}
+		if(makeSequence(prevEnd, nextType, length)){
+			int i = 0;//for view insertion to the right spots
+			for(Trick trick : newTricks){
+				trick.complete(gaussianDifficulty(difficulty));
+				TrickView newView = new TrickView(getContext(), layout, trick);
+				layout.addView(newView, index+i, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+				i++;
+			}
+			trickList.addAll(index, newTricks);
+		}
+		else{
+			//there isn't a combo of the specified length that can join the two moves together
+			return;
+		}
+	}
+	
 	//adds a computer-generated combo of the specified length at the specified index. Offload this to its own thread?
 	public void addSequence(int index, int length){//move difficulty here?
 		boolean hasNext = false, hasPrev = false;
@@ -174,10 +250,7 @@ public class Combo extends ScrollView implements OnGestureListener{
 			nextType = trickList.get(index).typeName;
 			hasNext = true;
 		}
-		boolean tryAgain = true;
 		ArrayList<Trick> newTricks = new ArrayList<Trick>(length);
-		while(tryAgain){
-			newTricks = new ArrayList<Trick>(length);
 		for(int i = 0; i < length; i++){
 			//Generate a new trick
 			ArrayList<String> possibleTypes = new ArrayList<String>();
@@ -198,10 +271,15 @@ public class Combo extends ScrollView implements OnGestureListener{
 				}
 			}
 			if(possibleTypes.isEmpty()){
-				tryAgain = true;
-				break;
+				i--;
+				newTricks.get(i).complete(gaussianDifficulty(difficulty));
+				layout.removeViewAt(index+i);
+				TrickView oldView = new TrickView(getContext(), layout, newTricks.get(i-1));
+				layout.addView(oldView, index+i-1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+				prevEnd = newTricks.get(i).endName;
+				hasPrev = true;
+				continue;
 			}
-			else tryAgain = false;
 			//make the new trick of a randomly picked, valid type
 			int classIdx = random.nextInt(possibleTypes.size());
 			String trickClass = trickClassPackage + possibleTypes.get(classIdx);
@@ -231,11 +309,10 @@ public class Combo extends ScrollView implements OnGestureListener{
 			//create TrickView for new Trick
 			TrickView newView = new TrickView(getContext(), layout, newTrick);
 			//add TrickView to scrollView
-			layout.addView(newView, index+i, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+			layout.addView(newView, index+i, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 			//bookkeeping stuff
 			hasPrev = true;
 			prevEnd = newTrick.endName;
-		}
 		}
 		//insert new tricks to trick list
 		trickList.addAll(index, newTricks);

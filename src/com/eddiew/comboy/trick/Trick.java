@@ -6,6 +6,7 @@ import java.util.Random;
 public class Trick{
 	public String typeName, trickName, endName, transitionName;//the transition into this move
 	public ArrayList<String> validEnds;
+	private Random random = new Random();
 	public Trick(){
 		typeName = "";
 		trickName = "";
@@ -27,10 +28,13 @@ public class Trick{
 		transitionName = transition;
 	}
 	
+	public void pickEnd(){
+		int endIdx = random.nextInt(validEnds.size());
+		endName = validEnds.get(endIdx);
+	}
+	
 	//override to allow for custom naming / variations
 	public void complete(int difficulty){
-		int endIdx = new Random().nextInt(validEnds.size());
-		endName = validEnds.get(endIdx);
 		trickName = typeName + ' ' + endName;
 	}
 }

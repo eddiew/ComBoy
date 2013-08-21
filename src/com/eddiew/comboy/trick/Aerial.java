@@ -9,7 +9,7 @@ public class Aerial extends Trick {
 		typeName = "Aerial";
 		validEnds.add("Back");
 		validEnds.add("Carry");
-		validEnds.add("Front");
+		//validEnds.add("Front");
 		validEnds.add("Left");
 		validEnds.add("Right");
 		validEnds.add("Step");
@@ -21,17 +21,17 @@ public class Aerial extends Trick {
 		super.complete(difficulty);
 		trickName = "";
 		int nSpins = difficulty/3;
-		if(endName == "Front" || (endName == "Carry" && nSpins == 0)){
+		if(endName == "Front" || endName == "Back" || (endName == "Carry" && nSpins == 0)){
 			int nHands = new Random().nextInt(10);//frequency: cartwheel > aerial > vanek
 			if (nHands < 3) trickName = "Aerial";
 			else if(nHands < 5) trickName = "Vanek";
 			else trickName = "Cartwheel";
 		}
-		else if(endName == "Back"){
-			int nHands = new Random().nextInt(10);
-			if(nHands < 3) trickName = "Roundoff";
-			else trickName = "Brandy";
-		}
+//		else if(endName == "Back"){
+//			int nHands = new Random().nextInt(10);
+//			if(nHands < 3) trickName = "Roundoff";
+//			else trickName = "Brandy";
+//		}
 		else{
 			if(nSpins == 0){
 				if(endName == "Left" || endName == "Swing") trickName = "Aerial Switch";
