@@ -9,11 +9,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class AddTricksDialog extends DialogFragment {
 	public int chosenLength = 0;
 	public int givenIndex = 0;
-	
+	public int chosenDifficulty = 5;
+
+    public AddTricksDialog(int length, int difficulty){
+        super();
+        chosenLength = length;
+        chosenDifficulty = difficulty;
+    }
 	/* The activity that creates an instance of this dialog fragment must
      * implement this interface in order to receive event callbacks.
      * Each method passes the DialogFragment in case the host needs to query it. */
@@ -51,8 +59,29 @@ public class AddTricksDialog extends DialogFragment {
         // Pass null as the parent view because it's going in the dialog layout
         final View dialogView = inflater.inflate(R.layout.addtricks_dialog, null);
         final EditText lengthField = (EditText)(dialogView.findViewById(R.id.length));
-        lengthField.setText("6");
+        final SeekBar difficultyField = (SeekBar) dialogView.findViewById(R.id.difficulty_seekbar);
+        final TextView difficultyView = (TextView) (dialogView.findViewById(R.id.difficulty));
+        lengthField.setText(Integer.toString(chosenLength));
         lengthField.setSelection(1);
+        difficultyView.setText(Integer.toString(chosenDifficulty));
+        difficultyField.setProgress(chosenDifficulty-1);
+        difficultyField.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                chosenDifficulty = i + 1;
+                difficultyView.setText(Integer.toString(chosenDifficulty));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
         builder.setView(dialogView)
         	.setTitle("Add Tricks")
         	// Add action buttons

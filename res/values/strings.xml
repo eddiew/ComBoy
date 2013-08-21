@@ -7,5 +7,8 @@
     <string name="action_save">Save</string>
     <string name="action_new">New</string>
     <string name="length">Combo Length</string>
+    <string name="difficulty">5</string>
+    <string name="difficulty_title">Combo Difficulty</string>
+    <string name="length_title">Combo Length</string>
 
 </resources>

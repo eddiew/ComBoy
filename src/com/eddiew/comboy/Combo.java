@@ -2,7 +2,6 @@ package com.eddiew.comboy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ListIterator;
 import java.util.Random;
 import java.util.Stack;
 
@@ -23,7 +22,7 @@ public class Combo extends ScrollView implements OnGestureListener{
 	private Random random;
 	private ArrayList<Trick> trickList;
 	private Stack<Trick> newTricks;
-	private int difficulty;
+	//private int difficulty;
 	private LinearLayout layout;
 	private static final String trickClassPackage = "com.eddiew.comboy.trick.";
 	private static final ArrayList<String> allTypes = new ArrayList<String>();
@@ -119,13 +118,13 @@ public class Combo extends ScrollView implements OnGestureListener{
 		layout.setOrientation(LinearLayout.VERTICAL);
 		addView(layout);
 		gestureDetector = new GestureDetector(context, this);
-		this.difficulty = 10;
+		//this.difficulty = 10;
 	}
 	
-	public Combo (Context context, int difficulty){
-		this(context);
-		this.difficulty = difficulty;
-	}
+//	public Combo (Context context, int difficulty){
+//		this(context);
+//		this.difficulty = difficulty;
+//	}
 	
 	//allows user to manually add a move
 	public void addTrick(int index){
@@ -133,7 +132,7 @@ public class Combo extends ScrollView implements OnGestureListener{
 	}
 	
 	private int gaussianDifficulty(int difficulty){
-		int rawDifficulty = (int)random.nextInt(difficulty);
+		int rawDifficulty = difficulty + (int)(random.nextGaussian()*(float)difficulty/3f);
 		if(rawDifficulty < 0) rawDifficulty = 0;
 		if(rawDifficulty > 10) rawDifficulty = 10;
 		return rawDifficulty;
@@ -143,29 +142,8 @@ public class Combo extends ScrollView implements OnGestureListener{
 		return validTypes.get(end).contains(type);
 	}
 	
-	private boolean canFlowTypes(String typeA, String typeB){
-		//create a Trick from type
-		Trick testTrick;
-		try {
-			testTrick = (Trick)(Class.forName(trickClassPackage + typeA).getConstructor().newInstance());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-		
-		//test if this particular type can flow into the nextType
-		for(String end : testTrick.validEnds){
-			return canFlow(end, typeB);
-		}
-		return false;
-	}
-	
 	private boolean makeSequence(String prevEnd, String nextType, int length){
-		if(length == 0){
-			if(nextType != null) return canFlow(newTricks.peek().endName, nextType);
-			else return true;
-		}
+		if(length == 0) return true;
 		ArrayList<String> possibleTypes = new ArrayList<String>();
 		if(prevEnd != null){
 			for(String type : validTypes.get(prevEnd)){
@@ -213,7 +191,7 @@ public class Combo extends ScrollView implements OnGestureListener{
 		return false;
 	}
 	
-	public void addTricks(int index, int length){
+	public void addTricks(int index, int length, int difficulty){
 		newTricks = new Stack<Trick>();
 		String prevEnd = null, nextType = null;
 		if(index != 0){
@@ -223,6 +201,13 @@ public class Combo extends ScrollView implements OnGestureListener{
 			nextType = trickList.get(index).typeName;
 		}
 		if(makeSequence(prevEnd, nextType, length)){
+            //update the next trick's transition to follow the last trick we add
+            if(nextType != null){
+                trickList.get(index).setTransitionName(actualTransitionNames.get(newTricks.peek().endName));
+                TrickView nextView = new TrickView(getContext(), layout, trickList.get(index));
+                layout.removeViewAt(index);
+                layout.addView(nextView, index);
+            }
 			int i = 0;//for view insertion to the right spots
 			for(Trick trick : newTricks){
 				trick.complete(gaussianDifficulty(difficulty));
@@ -236,86 +221,6 @@ public class Combo extends ScrollView implements OnGestureListener{
 			//there isn't a combo of the specified length that can join the two moves together
 			return;
 		}
-	}
-	
-	//adds a computer-generated combo of the specified length at the specified index. Offload this to its own thread?
-	public void addSequence(int index, int length){//move difficulty here?
-		boolean hasNext = false, hasPrev = false;
-		String prevEnd = "", nextType = "";
-		if(index != 0){
-			prevEnd = trickList.get(index-1).endName;
-			hasPrev = true;
-		}
-		if(index < trickList.size()-1){
-			nextType = trickList.get(index).typeName;
-			hasNext = true;
-		}
-		ArrayList<Trick> newTricks = new ArrayList<Trick>(length);
-		for(int i = 0; i < length; i++){
-			//Generate a new trick
-			ArrayList<String> possibleTypes = new ArrayList<String>();
-			//get the previous transition's list of valid tricks if it exists
-			if(hasPrev){
-				for(String type : validTypes.get(prevEnd)){
-					if(i != length-1 || !hasNext || canFlowTypes(type, nextType)){
-						possibleTypes.add(type);
-					}
-				}
-			}
-			//otherwise just choose from all types
-			else{
-				for(String type : allTypes){
-					if(i != length-1 || !hasNext || canFlowTypes(type, nextType)){
-						possibleTypes.add(type);
-					}
-				}
-			}
-			if(possibleTypes.isEmpty()){
-				i--;
-				newTricks.get(i).complete(gaussianDifficulty(difficulty));
-				layout.removeViewAt(index+i);
-				TrickView oldView = new TrickView(getContext(), layout, newTricks.get(i-1));
-				layout.addView(oldView, index+i-1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-				prevEnd = newTricks.get(i).endName;
-				hasPrev = true;
-				continue;
-			}
-			//make the new trick of a randomly picked, valid type
-			int classIdx = random.nextInt(possibleTypes.size());
-			String trickClass = trickClassPackage + possibleTypes.get(classIdx);
-			Trick newTrick;
-			try {
-				newTrick = (Trick)(Class.forName(trickClass).getConstructor().newInstance());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return;
-			}
-			
-			//if the trick needs to flow
-			if(i == length-1 && hasNext){
-				//get rid of its ends that don't
-				for(ListIterator<String> it = newTrick.validEnds.listIterator(newTrick.validEnds.size()-1); it.hasPrevious();){
-					if(!validTypes.get(it.previous()).contains(nextType)) it.remove();
-				}
-			}
-			//Set the transition to this trick
-			newTrick.setTransitionName(actualTransitionNames.get(prevEnd));
-			//finish trick generation
-			newTrick.complete(gaussianDifficulty(difficulty));
-			
-			//add new trick to new trick list
-			newTricks.add(newTrick);
-			//create TrickView for new Trick
-			TrickView newView = new TrickView(getContext(), layout, newTrick);
-			//add TrickView to scrollView
-			layout.addView(newView, index+i, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-			//bookkeeping stuff
-			hasPrev = true;
-			prevEnd = newTrick.endName;
-		}
-		//insert new tricks to trick list
-		trickList.addAll(index, newTricks);
 	}
 	public void clear(){
 		trickList.clear();

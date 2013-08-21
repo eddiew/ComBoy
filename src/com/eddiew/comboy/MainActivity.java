@@ -6,22 +6,27 @@ import com.eddiew.comboy.TrickView.AddTricksListener;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.File;
+
 public class MainActivity extends Activity implements DialogListener, AddTricksListener{
+    //private File file;
+    public int lastDifficulty = 5;
+    public int lastLength = 6;
 	public Combo combo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_main);
-		//combo = (Combo)findViewById(R.id.comboView);
 		//load settings
+        //file = new File(this.getExternalFilesDir(null));
 		//if a saved state exists (previous combo)
 		if(savedInstanceState != null) return;
 			//load it
 		//else show a blank combo
-		combo = new Combo(this, 3);
+		combo = new Combo(this);
 		setContentView(combo);
 		showAddTricksDialog(0);
 	}
@@ -43,6 +48,8 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 			showAddTricksDialog(0);
 			return true;
 		case R.id.action_save:
+            //start the save activity
+            //saveCombo();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -54,7 +61,7 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 	}
 	
 	public void showAddTricksDialog(int index){
-		DialogFragment addTricksDialogFragment = new AddTricksDialog();
+		DialogFragment addTricksDialogFragment = new AddTricksDialog(lastLength, lastDifficulty);
 		Bundle args = new Bundle();
 		args.putInt("index", index);
 		addTricksDialogFragment.setArguments(args);
@@ -64,7 +71,7 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 	@Override
 	public void onDialogPositiveClick(AddTricksDialog dialog) {
 		// TODO Auto-generated method stub
-		combo.addTricks(dialog.givenIndex, dialog.chosenLength);
+		combo.addTricks(dialog.givenIndex, dialog.chosenLength, dialog.chosenDifficulty);
 		
 	}
 
@@ -73,4 +80,14 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 		// TODO Auto-generated method stub
 		showAddTricksDialog(index);
 	}
+
+    public void saveCombo(){
+        /* Check if external storage is available to write */
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            //writable
+
+        }
+        //not writable
+        else return;
+    }
 }
