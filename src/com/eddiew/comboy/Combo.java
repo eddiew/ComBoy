@@ -14,16 +14,22 @@ import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Combo extends ScrollView implements OnGestureListener{
 	//variables for scrolling/view selection
 	private GestureDetector gestureDetector;
 	private float prevY;
+    //view stuff ABSTRACT THIS OUT SOME TIME
+    private LinearLayout layout;
 	//everything else
 	private Random random;
-	private ArrayList<Trick> trickList;
+	public ArrayList<Trick> trickList;
 	private Stack<Trick> newTricks;
+    public String comboName;
 	//private int difficulty;
-	private LinearLayout layout;
 	private static final String trickClassPackage = "com.eddiew.comboy.trick.";
 	private static final ArrayList<String> allTypes = new ArrayList<String>();
 	private static final HashMap<String, ArrayList<String>> validTypes = new HashMap<String, ArrayList<String>>();
@@ -118,8 +124,28 @@ public class Combo extends ScrollView implements OnGestureListener{
 		layout.setOrientation(LinearLayout.VERTICAL);
 		addView(layout);
 		gestureDetector = new GestureDetector(context, this);
-		//this.difficulty = 10;
 	}
+
+    public Combo(Context context, String jsonTricks) throws JSONException {
+        this(context);
+        JSONArray tricks = new JSONArray(jsonTricks);
+        for(int idx = 0; idx < tricks.length(); idx++){
+            JSONObject jsonTrick = tricks.getJSONObject(idx);
+            Trick trick = new Trick();
+            try {
+                trick = (Trick)(Class.forName(trickClassPackage + jsonTrick.getString("typeName")).getConstructor().newInstance());
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            trick.trickName = jsonTrick.getString("trickName");
+            trick.endName = jsonTrick.getString("endName");
+            trick.transitionName = jsonTrick.getString("transitionName");
+            trickList.add(trick);
+            TrickView trickView = new TrickView(context, layout, trick);
+            layout.addView(trickView);
+        }
+    }
 	
 //	public Combo (Context context, int difficulty){
 //		this(context);
@@ -161,11 +187,11 @@ public class Combo extends ScrollView implements OnGestureListener{
 			possibleTypes.remove(trickType);
 			Trick newTrick = new Trick();
 			try {
-				newTrick = (Trick)(Class.forName(trickClassPackage + trickType).getConstructor().newInstance());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                newTrick = (Trick)(Class.forName(trickClassPackage + trickType).getConstructor().newInstance());
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 			//get list of valid endings
 			ArrayList<String> ends = new ArrayList<String>();
 			for(String end : newTrick.validEnds){
