@@ -9,19 +9,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
-public class SaveDialog extends DialogFragment {
-
+public class FileDialog extends DialogFragment {
     /* The activity that creates an instance of this dialog fragment must
      * implement this interface in order to receive event callbacks.
      * Each method passes the DialogFragment in case the host needs to query it. */
-    public interface saveListener {
-        public void onDialogPositiveClick(SaveDialog dialog);
+    public interface fileDialogListener {
+        public void onFileChosen(String fileName);
         //public void onDialogNegativeClick(DialogFragment dialog);
     }
 
     // Use this instance of the interface to deliver action events
-    saveListener mListener;
+    fileDialogListener mListener;
 
     // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
     @Override
@@ -30,7 +30,7 @@ public class SaveDialog extends DialogFragment {
         // Verify that the host activity implements the callback interface
         try {
             // Instantiate the NoticeDialogListener so we can send events to the host
-            mListener = (saveListener) activity;
+            mListener = (fileDialogListener) activity;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(activity.toString()
@@ -40,31 +40,25 @@ public class SaveDialog extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Get the layout inflater
-        LayoutInflater inflater = getActivity().getLayoutInflater();
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because it's going in the dialog layout
-        final View dialogView = inflater.inflate(R.layout.addtricks_dialog, null);
-        final EditText lengthField = (EditText)(dialogView.findViewById(R.id.length));
-        lengthField.setText("6");
-        lengthField.setSelection(1);
-        builder.setView(dialogView)
-                .setTitle("Some Unsupported File Operation")
-                // Add action buttons
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(SaveDialog.this);
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
-                        dismiss();
+        switch(getArguments().getChar("Mode")) {
+            case 'S':
+                builder.setTitle("Save");
+                // Get the layout inflater
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.save_dialog, null);
+                break;
+            case 'L':
+                builder.setTitle("Load");
+                final String[] files = getActivity().fileList();
+                builder.setItems(files, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mListener.onFileChosen(files[which]);
                     }
                 });
-        // Create the AlertDialog object and return it
+
+        }
         return builder.create();
     }
 }

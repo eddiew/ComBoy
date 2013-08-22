@@ -66,11 +66,8 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
             //show some sort of load menu. use fileList() to get saved files. allow for deleting combos with deleteFile()
 
 			return true;
-		case R.id.action_new:
-			combo.clear();
-			showAddTricksDialog(0);
-			return true;
 		case R.id.action_save:
+            //show the file operation menu. Refer to comments above.
             try {
                 saveCombo();
             } catch (IOException e) {
@@ -78,6 +75,10 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            return true;
+        case R.id.action_new:
+            combo.clear();
+            showAddTricksDialog(0);
             return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -111,6 +112,7 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 
     public void saveCombo() throws IOException, JSONException {
         JSONArray tricks = new JSONArray();
+        tricks.put(combo.comboName);
         for(Trick t : combo.trickList){
             JSONObject trick = new JSONObject();
             trick.put("typeName",t.typeName);

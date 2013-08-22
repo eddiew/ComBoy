@@ -129,7 +129,8 @@ public class Combo extends ScrollView implements OnGestureListener{
     public Combo(Context context, String jsonTricks) throws JSONException {
         this(context);
         JSONArray tricks = new JSONArray(jsonTricks);
-        for(int idx = 0; idx < tricks.length(); idx++){
+        comboName = tricks.getString(0);
+        for(int idx = 1; idx < tricks.length(); idx++){
             JSONObject jsonTrick = tricks.getJSONObject(idx);
             Trick trick = new Trick();
             try {
