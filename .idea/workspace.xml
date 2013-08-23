@@ -12,11 +12,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f3a75d7-f198-4e96-8292-473622a7017d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ComBoy.apk" />
-      <change type="DELETED" beforePath="C:\Users\wangeddx\workspace\ComBoy\src\com\eddiew\comboy\FileController.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\wangeddx\workspace\ComBoy\bin\classes\com\eddiew\comboy\FileController.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$FileDialogListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$FileDialogListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/AddTricksDialog$1.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/AddTricksDialog$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/AddTricksDialog$2.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/AddTricksDialog$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/AddTricksDialog$3.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/AddTricksDialog$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/AddTricksDialog.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/AddTricksDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/ComBoy.apk" afterPath="$PROJECT_DIR$/bin/ComBoy.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/Combo.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/Combo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$1.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$2.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$3.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$4.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/FileDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/MainActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/eddiew/comboy/MainActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes.dex" afterPath="$PROJECT_DIR$/bin/classes.dex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/resources.ap_" afterPath="$PROJECT_DIR$/bin/resources.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eddiew/comboy/AddTricksDialog.java" afterPath="$PROJECT_DIR$/src/com/eddiew/comboy/AddTricksDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eddiew/comboy/Combo.java" afterPath="$PROJECT_DIR$/src/com/eddiew/comboy/Combo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/AndroidManifest.xml" afterPath="$PROJECT_DIR$/bin/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eddiew/comboy/FileDialog.java" afterPath="$PROJECT_DIR$/src/com/eddiew/comboy/FileDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eddiew/comboy/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/eddiew/comboy/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ComBoy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,49 +104,7 @@
       <file leaf-file-name="Combo.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/Combo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="41" selection-start="3195" selection-end="3195" vertical-scroll-proportion="0.0" vertical-offset="967" max-vertical-offset="4845">
-              <folding>
-                <element signature="e#4766#4774#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hook.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Hook.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Trick.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Trick.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="28" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="43" selection-start="3535" selection-end="3535" vertical-scroll-proportion="0.64468867" vertical-offset="1263" max-vertical-offset="3825">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1881#2493#0" expanded="true" />
-                <element signature="e#2482#2483#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="76" selection-start="893" selection-end="893" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+            <state line="68" column="48" selection-start="2374" selection-end="2374" vertical-scroll-proportion="0.0" vertical-offset="1139" max-vertical-offset="5117">
               <folding />
             </state>
           </provider>
@@ -138,37 +113,79 @@
       <file leaf-file-name="FileDialog.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/FileDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="22" selection-start="2898" selection-end="2898" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1513">
-              <folding>
-                <element signature="e#3084#3289#0" expanded="true" />
-                <element signature="e#3270#3271#0" expanded="true" />
-                <element signature="e#3335#3544#0" expanded="true" />
-                <element signature="e#3525#3526#0" expanded="true" />
-                <element signature="e#3591#3803#0" expanded="true" />
-                <element signature="e#3784#3785#0" expanded="true" />
-                <element signature="e#3851#4089#0" expanded="true" />
-                <element signature="e#4070#4071#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="save_dialog.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/save_dialog.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="15" selection-start="429" selection-end="429" vertical-scroll-proportion="-7.48" vertical-offset="0" max-vertical-offset="289">
+            <state line="4" column="22" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1530">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingsFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/SettingsFragment.java">
+      <file leaf-file-name="AddTricksDialog.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/AddTricksDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="8" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+            <state line="6" column="33" selection-start="186" selection-end="186" vertical-scroll-proportion="0.20158103" vertical-offset="0" max-vertical-offset="1921">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="32" selection-start="1705" selection-end="1705" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="3893">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Aerial.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Aerial.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="13" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="918">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Backside.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Backside.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="30" selection-start="129" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="493">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Butterfly.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Butterfly.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="35" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="748">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cheat.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Cheat.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="68" selection-start="421" selection-end="421" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="629">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Swing.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Swing.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="57" selection-start="537" selection-end="537" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="493">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="33" selection-start="248" selection-end="248" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="595">
               <folding />
             </state>
           </provider>
@@ -205,10 +222,10 @@
         <option value="$PROJECT_DIR$/src/com/eddiew/comboy/AddTricksDialog.java" />
         <option value="$PROJECT_DIR$/res/layout/file_operation.xml" />
         <option value="$PROJECT_DIR$/res/layout/save_dialog.xml" />
-        <option value="$PROJECT_DIR$/src/com/eddiew/comboy/FileDialog.java" />
         <option value="$PROJECT_DIR$/src/com/eddiew/comboy/Combo.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/eddiew/comboy/MainActivity.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/eddiew/comboy/FileDialog.java" />
       </list>
     </option>
   </component>
@@ -244,8 +261,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -279,28 +296,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="comboy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ComBoy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ComBoy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="comboy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trick" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -372,8 +367,8 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="AndroidRunProguardForReleaseBuild" value="false" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
   </component>
   <component name="RunManager" selected="Android Application.ComBoy">
@@ -529,32 +524,32 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.81363004" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3991655" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26031294" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26008344" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24318507" sideWeight="0.81363004" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18636996" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24318507" sideWeight="0.73991656" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18636996" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.81363004" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -620,99 +615,29 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/layout/file_operation.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="50" selection-start="655" selection-end="655" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="1156">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/addtricks_dialog.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="46" selection-start="1961" selection-end="1961" vertical-scroll-proportion="1.1197605" vertical-offset="51" max-vertical-offset="952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/AddTricksDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="68" selection-start="2059" selection-end="2059" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1700">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/save_dialog.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="15" selection-start="429" selection-end="429" vertical-scroll-proportion="-7.48" vertical-offset="0" max-vertical-offset="289">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/FileDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="22" selection-start="2898" selection-end="2898" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1513">
-          <folding>
-            <element signature="e#3084#3289#0" expanded="true" />
-            <element signature="e#3270#3271#0" expanded="true" />
-            <element signature="e#3335#3544#0" expanded="true" />
-            <element signature="e#3525#3526#0" expanded="true" />
-            <element signature="e#3591#3803#0" expanded="true" />
-            <element signature="e#3784#3785#0" expanded="true" />
-            <element signature="e#3851#4089#0" expanded="true" />
-            <element signature="e#4070#4071#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/SettingsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="8" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Gainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="47" selection-end="47" vertical-scroll-proportion="0.060822897" vertical-offset="0" max-vertical-offset="935">
-          <folding />
-        </state>
+        <state line="2" column="13" selection-start="47" selection-end="47" vertical-scroll-proportion="0.060822897" vertical-offset="0" max-vertical-offset="935" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Pop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="47" selection-end="47" vertical-scroll-proportion="0.060822897" vertical-offset="0" max-vertical-offset="559">
-          <folding />
-        </state>
+        <state line="2" column="13" selection-start="47" selection-end="47" vertical-scroll-proportion="0.060822897" vertical-offset="0" max-vertical-offset="559" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Raiz.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="73" selection-end="73" vertical-scroll-proportion="0.12164579" vertical-offset="0" max-vertical-offset="918">
-          <folding />
-        </state>
+        <state line="4" column="13" selection-start="73" selection-end="73" vertical-scroll-proportion="0.12164579" vertical-offset="0" max-vertical-offset="918" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Trick.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="28" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <folding />
-        </state>
+        <state line="13" column="28" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765" />
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/java/util/HashMap.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="13" selection-start="912" selection-end="969" vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="765">
-          <folding />
-        </state>
+        <state line="27" column="13" selection-start="912" selection-end="969" vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="765" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Hook.java">
@@ -722,30 +647,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/Combo.java">
+    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Aerial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="41" selection-start="3195" selection-end="3195" vertical-scroll-proportion="0.0" vertical-offset="967" max-vertical-offset="4845">
-          <folding>
-            <element signature="e#4766#4774#0" expanded="true" />
-          </folding>
+        <state line="4" column="13" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Backside.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="76" selection-start="893" selection-end="893" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+        <state line="6" column="30" selection-start="129" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Butterfly.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="35" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Cheat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="68" selection-start="421" selection-end="421" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/trick/Swing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="57" selection-start="537" selection-end="537" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/Combo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="48" selection-start="2374" selection-end="2374" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="4845">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="43" selection-start="3535" selection-end="3535" vertical-scroll-proportion="0.64468867" vertical-offset="1263" max-vertical-offset="3825">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1881#2493#0" expanded="true" />
-            <element signature="e#2482#2483#0" expanded="true" />
-          </folding>
+        <state line="49" column="32" selection-start="1705" selection-end="1705" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="3893">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="33" selection-start="248" selection-end="248" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/FileDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="22" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1530">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eddiew/comboy/AddTricksDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="33" selection-start="186" selection-end="186" vertical-scroll-proportion="0.20158103" vertical-offset="0" max-vertical-offset="1921">
+          <folding />
         </state>
       </provider>
     </entry>

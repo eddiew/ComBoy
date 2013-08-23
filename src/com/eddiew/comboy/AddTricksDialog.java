@@ -3,7 +3,8 @@ package com.eddiew.comboy;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
+//import android.app.DialogFragment;
+import android.support.v4.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,15 +14,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class AddTricksDialog extends DialogFragment {
-	public int chosenLength = 0;
-	public int givenIndex = 0;
-	public int chosenDifficulty = 5;
+	public int length;
+	public int index;
+	public int difficulty;
 
-    public AddTricksDialog(int length, int difficulty){
-        super();
-        chosenLength = length;
-        chosenDifficulty = difficulty;
-    }
+//    public AddTricksDialog(int length, int difficulty){
+//        super();
+//        chosenLength = length;
+//        chosenDifficulty = difficulty;
+//    }
 	/* The activity that creates an instance of this dialog fragment must
      * implement this interface in order to receive event callbacks.
      * Each method passes the DialogFragment in case the host needs to query it. */
@@ -50,7 +51,9 @@ public class AddTricksDialog extends DialogFragment {
 	
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-		givenIndex = getArguments().getInt("index");
+		index = getArguments().getInt("index");
+		length = getArguments().getInt("length");
+		difficulty = getArguments().getInt("difficulty");
 		// Get the layout inflater
 		LayoutInflater inflater = getActivity().getLayoutInflater();
         // Use the Builder class for convenient dialog construction
@@ -61,15 +64,15 @@ public class AddTricksDialog extends DialogFragment {
         final EditText lengthField = (EditText)(dialogView.findViewById(R.id.length));
         final SeekBar difficultyField = (SeekBar) dialogView.findViewById(R.id.difficulty_seekbar);
         final TextView difficultyView = (TextView) (dialogView.findViewById(R.id.difficulty));
-        lengthField.setText(Integer.toString(chosenLength));
+        lengthField.setText(Integer.toString(length));
         lengthField.setSelection(1);
-        difficultyView.setText(Integer.toString(chosenDifficulty));
-        difficultyField.setProgress(chosenDifficulty-1);
+        difficultyView.setText(Integer.toString(difficulty));
+        difficultyField.setProgress(difficulty-1);
         difficultyField.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                chosenDifficulty = i + 1;
-                difficultyView.setText(Integer.toString(chosenDifficulty));
+            	difficulty = i + 1;
+                difficultyView.setText(Integer.toString(difficulty));
             }
 
             @Override
@@ -88,10 +91,10 @@ public class AddTricksDialog extends DialogFragment {
             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int id) {
 	            	try{
-	            		chosenLength = Integer.parseInt(lengthField.getText().toString());
+	            		length = Integer.parseInt(lengthField.getText().toString());
 	            	}
 	            	catch(Exception e){
-	            		chosenLength = 0;
+	            		length = 0;
 	            	}
 	                mListener.onDialogPositiveClick(AddTricksDialog.this);
 	            }

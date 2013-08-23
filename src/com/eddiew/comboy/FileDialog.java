@@ -3,7 +3,8 @@ package com.eddiew.comboy;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
+//import android.app.DialogFragment;
+import android.support.v4.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +16,7 @@ public class FileDialog extends DialogFragment {
     /* The activity that creates an instance of this dialog fragment must
      * implement this interface in order to receive event callbacks.
      * Each method passes the DialogFragment in case the host needs to query it. */
-    public interface fileDialogListener {
+    public interface FileDialogListener {
         public void onSave(String fileName);
         public void onDelete(String fileName);
         public void onLoad(String fileName);
@@ -23,7 +24,7 @@ public class FileDialog extends DialogFragment {
     }
 
     // Use this instance of the interface to deliver action events
-    fileDialogListener mListener;
+    FileDialogListener mListener;
 
     // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
     @Override
@@ -32,7 +33,7 @@ public class FileDialog extends DialogFragment {
         // Verify that the host activity implements the callback interface
         try {
             // Instantiate the NoticeDialogListener so we can send events to the host
-            mListener = (fileDialogListener) activity;
+            mListener = (FileDialogListener) activity;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(activity.toString()

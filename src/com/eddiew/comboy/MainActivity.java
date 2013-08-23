@@ -1,15 +1,17 @@
 package com.eddiew.comboy;
 
 import com.eddiew.comboy.AddTricksDialog.DialogListener;
-import com.eddiew.comboy.FileDialog.fileDialogListener;
+import com.eddiew.comboy.FileDialog.FileDialogListener;
 import com.eddiew.comboy.TrickView.AddTricksListener;
 import com.eddiew.comboy.trick.Trick;
 
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.DialogFragment;
+//import android.app.Activity;//stupid OS compatibility
+//import android.app.DialogFragment;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -32,7 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MainActivity extends Activity implements DialogListener, AddTricksListener, fileDialogListener{
+public class MainActivity extends FragmentActivity implements DialogListener, AddTricksListener, FileDialogListener{
     //private File file;
     public int lastDifficulty = 5;
     public int lastLength = 6;
@@ -100,11 +102,9 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch(item.getItemId()){
 		case R.id.action_load:
-            //allow for deleting saved combos with deleteFile()
 			showFileDialog('L');
 			return true;
 		case R.id.action_save:
-			//showFileDialog('S');
             try {
                 saveCombo(combo.comboName);
             } catch (IOException e) {
@@ -130,11 +130,13 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 	}
 	
 	public void showAddTricksDialog(int index){
-		DialogFragment addTricksDialogFragment = new AddTricksDialog(lastLength, lastDifficulty);
+		DialogFragment addTricksDialogFragment = new AddTricksDialog();
 		Bundle args = new Bundle();
 		args.putInt("index", index);
+		args.putInt("difficulty", lastDifficulty);
+		args.putInt("length", lastLength);
 		addTricksDialogFragment.setArguments(args);
-		addTricksDialogFragment.show(getFragmentManager(), "addTricks");
+		addTricksDialogFragment.show(getSupportFragmentManager(), "addTricks");
 	}
 	
 	public void showFileDialog(char mode){
@@ -142,12 +144,14 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 		Bundle args = new Bundle();
 		args.putChar("mode", mode);
 		FileDialog.setArguments(args);
-		FileDialog.show(getFragmentManager(), "file_operation");
+		FileDialog.show(getSupportFragmentManager(), "file_operation");
 	}
 
 	@Override
 	public void onDialogPositiveClick(AddTricksDialog dialog) {
-		combo.addTricks(dialog.givenIndex, dialog.chosenLength, dialog.chosenDifficulty);
+		combo.addTricks(dialog.index, dialog.length, dialog.difficulty);
+		lastDifficulty = dialog.difficulty;
+		lastLength = dialog.length;
         comboNameView.setText(combo.comboName);
         setContentView(layout);
 	}
