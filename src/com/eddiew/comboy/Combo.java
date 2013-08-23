@@ -124,6 +124,7 @@ public class Combo extends ScrollView implements OnGestureListener{
 		layout.setOrientation(LinearLayout.VERTICAL);
 		addView(layout);
 		gestureDetector = new GestureDetector(context, this);
+        comboName = "Random Combo";
 	}
 
     public Combo(Context context, String jsonTricks) throws JSONException {

@@ -10,8 +10,17 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Environment;
+import android.text.InputType;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,22 +39,46 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
     public int lastDifficulty = 5;
     public int lastLength = 6;
 	public Combo combo;
+    private LinearLayout layout;
+    EditText comboNameView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//load settings
+        layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setFocusableInTouchMode(true);
+        combo = new Combo(this);
+        comboNameView = new EditText(this);
+        comboNameView.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        comboNameView.setGravity(Gravity.CENTER);
+        comboNameView.setText(combo.comboName);
+        comboNameView.setSingleLine();
+        comboNameView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if(i == EditorInfo.IME_ACTION_DONE){
+                    combo.comboName = textView.getText().toString();
+                    InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(textView.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    return true;
+                }
+                return false;
+            }
+        });
+        layout.addView(comboNameView, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        //load settings
         //file = new File(this.getExternalFilesDir(null));
 		//if a saved state exists (previous combo)
 		//if(savedInstanceState != null) return;
 			//load it
 		//else show a blank combo
-		combo = new Combo(this);
-		showAddTricksDialog(0);
+        layout.addView(combo, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        layout.requestFocus();
 	}
 	@Override
 	public void onResume(){
 		super.onResume();
-		setContentView(combo);
+		setContentView(layout);
 	}
 	@Override
 	public void onPause(){
@@ -68,7 +101,17 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 			showFileDialog('L');
 			return true;
 		case R.id.action_save:
-			showFileDialog('S');
+			//showFileDialog('S');
+            try {
+                saveCombo(combo.comboName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String saveMsg = combo.comboName;
+            saveMsg += " Saved";
+            Toast.makeText(this, saveMsg, Toast.LENGTH_SHORT).show();
             return true;
         case R.id.action_new:
             combo.clear();
@@ -102,6 +145,8 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 	@Override
 	public void onDialogPositiveClick(AddTricksDialog dialog) {
 		combo.addTricks(dialog.givenIndex, dialog.chosenLength, dialog.chosenDifficulty);
+        comboNameView.setText(combo.comboName);
+        setContentView(layout);
 	}
 
 	@Override
@@ -137,6 +182,8 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
         }
         isr.close();
         combo = new Combo(this, fileContent.toString());
+        layout.removeViewAt(1);
+        layout.addView(combo, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
     }
 	@Override
 	public void onSave(String fileName) {
@@ -148,7 +195,13 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 			e.printStackTrace();
 		}
 	}
-	@Override
+
+    @Override
+    public void onDelete(String fileName) {
+        deleteFile(fileName);
+    }
+
+    @Override
 	public void onLoad(String fileName) {
 		try {
 			loadCombo(fileName);
@@ -157,6 +210,7 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		setContentView(combo);
+        comboNameView.setText(combo.comboName);
+		//setContentView(layout);
 	}
 }

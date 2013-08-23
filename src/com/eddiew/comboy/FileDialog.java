@@ -11,11 +11,13 @@ import android.view.View;
 import android.widget.EditText;
 
 public class FileDialog extends DialogFragment {
+    private String selectedFile = "";
     /* The activity that creates an instance of this dialog fragment must
      * implement this interface in order to receive event callbacks.
      * Each method passes the DialogFragment in case the host needs to query it. */
     public interface fileDialogListener {
         public void onSave(String fileName);
+        public void onDelete(String fileName);
         public void onLoad(String fileName);
         //public void onDialogNegativeClick(DialogFragment dialog);
     }
@@ -65,9 +67,19 @@ public class FileDialog extends DialogFragment {
             case 'L':
                 builder.setTitle("Load");
                 final String[] files = getActivity().fileList();
-                builder.setItems(files, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        mListener.onLoad(files[which]);
+                builder.setSingleChoiceItems(files, -1, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int idx) {
+                        selectedFile = files[idx];
+                    }
+                })
+                .setPositiveButton("Load",  new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        mListener.onLoad(selectedFile);
+                    }
+                })
+                .setNeutralButton("Delete",  new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                         mListener.onDelete(selectedFile);
                     }
                 })
                 .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
@@ -76,7 +88,7 @@ public class FileDialog extends DialogFragment {
                         dismiss();
                     }
                 });
-
+                break;
         }
         return builder.create();
     }
