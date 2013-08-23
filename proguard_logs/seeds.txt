@@ -1,0 +1,49 @@
+com.eddiew.comboy.FileController
+com.eddiew.comboy.FileController: FileController()
+com.eddiew.comboy.MainActivity
+com.eddiew.comboy.MainActivity: MainActivity()
+com.eddiew.comboy.R$dimen: int activity_horizontal_margin
+com.eddiew.comboy.R$dimen: int activity_vertical_margin
+com.eddiew.comboy.R$drawable: int ic_action_load
+com.eddiew.comboy.R$drawable: int ic_action_new
+com.eddiew.comboy.R$drawable: int ic_action_save
+com.eddiew.comboy.R$drawable: int ic_launcher
+com.eddiew.comboy.R$id: int action_load
+com.eddiew.comboy.R$id: int action_new
+com.eddiew.comboy.R$id: int action_save
+com.eddiew.comboy.R$id: int cancel
+com.eddiew.comboy.R$id: int comboView
+com.eddiew.comboy.R$id: int difficulty
+com.eddiew.comboy.R$id: int difficulty_seekbar
+com.eddiew.comboy.R$id: int difficulty_title
+com.eddiew.comboy.R$id: int fileLinearLayout2
+com.eddiew.comboy.R$id: int fileLinearLayout3
+com.eddiew.comboy.R$id: int fileName
+com.eddiew.comboy.R$id: int file_list
+com.eddiew.comboy.R$id: int file_list_container
+com.eddiew.comboy.R$id: int file_name
+com.eddiew.comboy.R$id: int length
+com.eddiew.comboy.R$id: int length_title
+com.eddiew.comboy.R$id: int newFolder
+com.eddiew.comboy.R$id: int ok
+com.eddiew.comboy.R$id: int transitionName
+com.eddiew.comboy.R$id: int trickName
+com.eddiew.comboy.R$layout: int activity_main
+com.eddiew.comboy.R$layout: int addtricks_dialog
+com.eddiew.comboy.R$layout: int file_operation
+com.eddiew.comboy.R$layout: int save_dialog
+com.eddiew.comboy.R$layout: int trick_view_detailed
+com.eddiew.comboy.R$layout: int trick_view_summary
+com.eddiew.comboy.R$menu: int action_bar
+com.eddiew.comboy.R$string: int action_load
+com.eddiew.comboy.R$string: int action_new
+com.eddiew.comboy.R$string: int action_save
+com.eddiew.comboy.R$string: int action_settings
+com.eddiew.comboy.R$string: int app_name
+com.eddiew.comboy.R$string: int difficulty
+com.eddiew.comboy.R$string: int difficulty_title
+com.eddiew.comboy.R$string: int length
+com.eddiew.comboy.R$string: int length_title
+com.eddiew.comboy.R$style: int AppBaseTheme
+com.eddiew.comboy.R$style: int AppTheme
+com.eddiew.comboy.R$xml: int preferences

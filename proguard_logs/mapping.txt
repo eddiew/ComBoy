@@ -1,0 +1,143 @@
+com.eddiew.comboy.AddTricksDialog -> com.eddiew.comboy.a:
+    int chosenLength -> a
+    int givenIndex -> b
+    int chosenDifficulty -> c
+    com.eddiew.comboy.AddTricksDialog$DialogListener mListener -> d
+    void onAttach(android.app.Activity) -> onAttach
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+com.eddiew.comboy.AddTricksDialog$1 -> com.eddiew.comboy.b:
+    android.widget.TextView val$difficultyView -> a
+    com.eddiew.comboy.AddTricksDialog this$0 -> b
+    void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+com.eddiew.comboy.AddTricksDialog$2 -> com.eddiew.comboy.c:
+    com.eddiew.comboy.AddTricksDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.eddiew.comboy.AddTricksDialog$3 -> com.eddiew.comboy.d:
+    android.widget.EditText val$lengthField -> a
+    com.eddiew.comboy.AddTricksDialog this$0 -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.eddiew.comboy.AddTricksDialog$DialogListener -> com.eddiew.comboy.e:
+    void onDialogPositiveClick(com.eddiew.comboy.AddTricksDialog) -> a
+com.eddiew.comboy.Combo -> com.eddiew.comboy.f:
+    android.view.GestureDetector gestureDetector -> c
+    float prevY -> d
+    android.widget.LinearLayout layout -> e
+    java.util.Random random -> f
+    java.util.ArrayList trickList -> a
+    java.util.Stack newTricks -> g
+    java.lang.String comboName -> b
+    java.util.ArrayList allTypes -> h
+    java.util.HashMap validTypes -> i
+    java.util.HashMap actualTransitionNames -> j
+    void addTransition(java.lang.String,java.lang.String) -> a
+    void addTypeToTransition(java.lang.String,java.lang.String,int) -> a
+    int gaussianDifficulty(int) -> a
+    boolean canFlow(java.lang.String,java.lang.String) -> b
+    boolean makeSequence(java.lang.String,java.lang.String,int) -> b
+    void addTricks(int,int,int) -> a
+    void clear() -> a
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
+    boolean onDown(android.view.MotionEvent) -> onDown
+    boolean onFling(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onFling
+    void onLongPress(android.view.MotionEvent) -> onLongPress
+    boolean onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onScroll
+    void onShowPress(android.view.MotionEvent) -> onShowPress
+    boolean onSingleTapUp(android.view.MotionEvent) -> onSingleTapUp
+com.eddiew.comboy.FileController -> com.eddiew.comboy.FileController:
+    android.os.IBinder onBind(android.content.Intent) -> onBind
+com.eddiew.comboy.FileDialog -> com.eddiew.comboy.g:
+    java.lang.String selectedFile -> b
+    com.eddiew.comboy.FileDialog$fileDialogListener mListener -> a
+    void onAttach(android.app.Activity) -> onAttach
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+    java.lang.String access$000(com.eddiew.comboy.FileDialog) -> a
+    java.lang.String access$002(com.eddiew.comboy.FileDialog,java.lang.String) -> a
+com.eddiew.comboy.FileDialog$1 -> com.eddiew.comboy.h:
+    com.eddiew.comboy.FileDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.eddiew.comboy.FileDialog$2 -> com.eddiew.comboy.i:
+    android.widget.EditText val$fileNameField -> a
+    com.eddiew.comboy.FileDialog this$0 -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.eddiew.comboy.FileDialog$3 -> com.eddiew.comboy.j:
+    com.eddiew.comboy.FileDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.eddiew.comboy.FileDialog$4 -> com.eddiew.comboy.k:
+    com.eddiew.comboy.FileDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.eddiew.comboy.FileDialog$5 -> com.eddiew.comboy.l:
+    com.eddiew.comboy.FileDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.eddiew.comboy.FileDialog$6 -> com.eddiew.comboy.m:
+    java.lang.String[] val$files -> a
+    com.eddiew.comboy.FileDialog this$0 -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.eddiew.comboy.FileDialog$fileDialogListener -> com.eddiew.comboy.n:
+    void onSave(java.lang.String) -> a
+    void onDelete(java.lang.String) -> b
+    void onLoad(java.lang.String) -> c
+com.eddiew.comboy.MainActivity -> com.eddiew.comboy.MainActivity:
+    int lastDifficulty -> a
+    int lastLength -> b
+    com.eddiew.comboy.Combo combo -> c
+    android.widget.LinearLayout layout -> e
+    android.widget.EditText comboNameView -> d
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onPause() -> onPause
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    void showAddTricksDialog(int) -> a
+    void showFileDialog(char) -> a
+    void onDialogPositiveClick(com.eddiew.comboy.AddTricksDialog) -> a
+    void insertTricks(int) -> b
+    void saveCombo(java.lang.String) -> d
+    void loadCombo(java.lang.String) -> e
+    void onSave(java.lang.String) -> a
+    void onDelete(java.lang.String) -> b
+    void onLoad(java.lang.String) -> c
+com.eddiew.comboy.MainActivity$1 -> com.eddiew.comboy.o:
+    com.eddiew.comboy.MainActivity this$0 -> a
+    boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
+com.eddiew.comboy.TrickView -> com.eddiew.comboy.p:
+    android.view.ViewGroup container -> a
+    com.eddiew.comboy.trick.Trick trickData -> b
+    android.widget.TextView nameView -> c
+    android.widget.TextView transitionView -> d
+    android.widget.ImageButton prefixButton -> e
+    android.widget.ImageButton postfixButton -> f
+    android.view.View separator -> g
+    boolean isDetailedView -> h
+    com.eddiew.comboy.TrickView$AddTricksListener listener -> i
+    android.view.View$OnClickListener addTricksListener -> j
+    android.widget.RelativeLayout$LayoutParams summaryParams -> k
+    android.widget.RelativeLayout$LayoutParams nameViewParams -> l
+    android.widget.RelativeLayout$LayoutParams transitionViewParams -> m
+    android.widget.RelativeLayout$LayoutParams transitionSummaryParams -> n
+    android.widget.RelativeLayout$LayoutParams prefixButtonParams -> o
+    android.widget.RelativeLayout$LayoutParams postfixButtonParams -> p
+    android.widget.RelativeLayout$LayoutParams separatorParams -> q
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void refresh() -> a
+    void setSummaryView() -> b
+    void setDetailedView() -> c
+    android.view.ViewGroup access$000(com.eddiew.comboy.TrickView) -> a
+    com.eddiew.comboy.TrickView$AddTricksListener access$100(com.eddiew.comboy.TrickView) -> b
+com.eddiew.comboy.TrickView$1 -> com.eddiew.comboy.q:
+    com.eddiew.comboy.TrickView this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.eddiew.comboy.TrickView$AddTricksListener -> com.eddiew.comboy.r:
+    void insertTricks(int) -> b
+com.eddiew.comboy.trick.Trick -> com.eddiew.comboy.a.a:
+    java.lang.String typeName -> a
+    java.lang.String trickName -> b
+    java.lang.String endName -> c
+    java.lang.String transitionName -> d
+    java.util.ArrayList validEnds -> e
+    java.util.Random random -> f
+    void setTransitionName(java.lang.String) -> a
+    void complete(int) -> a

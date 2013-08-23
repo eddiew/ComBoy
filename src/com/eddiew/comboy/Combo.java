@@ -51,69 +51,49 @@ public class Combo extends ScrollView implements OnGestureListener{
 		allTypes.add("Wrap");
 		
 		//valid types given a transition. Change lists of strings to lists of string, int (relative probability) pairs?
-		ArrayList<String> left = new ArrayList<String>();//vanish
-		left.add("Cheat");
-		left.add("Pop");
-		validTypes.put("Left", left);
-		actualTransitionNames.put("Left", "Vanish");
-		
-		ArrayList<String> right = new ArrayList<String>();//vanish
-		right.add("Aerial");
-		right.add("Backside");
-		right.add("Butterfly");
-		validTypes.put("Right", right);
-		actualTransitionNames.put("Right", "Vanish");
-		
-		ArrayList<String> swing = new ArrayList<String>();
-		swing.add("Gainer");
-		validTypes.put("Swing", swing);
-		actualTransitionNames.put("Swing", "Swing Through");
-		
-		ArrayList<String> carry = new ArrayList<String>();
-		carry.add("Wrap");
-		carry.add("Raiz");
-		validTypes.put("Carry", carry);
-		actualTransitionNames.put("Carry", "Carry Through");
-		
-		ArrayList<String> back = new ArrayList<String>();
-		back.add("Back");
-		validTypes.put("Back", back);
-		actualTransitionNames.put("Back", "Punch");
-		
-		ArrayList<String> front = new ArrayList<String>();
-		front.add("Front");
-		validTypes.put("Front", front);
-		actualTransitionNames.put("Front", "Punch");
+        //Add some sort of preference loading here
+        addTransition("Left", "Vanish");
+        addTypeToTransition("Left", "Cheat", 1);
+        addTypeToTransition("Left", "Pop", 1);
+
+		addTransition("Right", "Vanish");
+        addTypeToTransition("Right","Aerial",1);
+        addTypeToTransition("Right","Backside",1);
+        addTypeToTransition("Right","Butterfly",1);
+
+        addTransition("Swing", "Swing Through");
+        addTypeToTransition("Swing", "Gainer", 1);
+
+        addTransition("Carry", "Carry Through");
+        addTypeToTransition("Carry", "Raiz", 1);
+        addTypeToTransition("Carry", "Wrap", 1);
+
+        addTransition("Back", "Punch");
+        addTypeToTransition("Back", "Back", 1);
+
+        addTransition("Front", "Punch");
+        addTypeToTransition("Front", "Front", 1);
 		
 		//Step-transitions
-		ArrayList<String> step = new ArrayList<String>();//right foot step
-		step.add("Raiz");
 		//step.add("Cheat");
 		//step.add("Hook");//step-over
-		validTypes.put("Step",step);
-		actualTransitionNames.put("Step", "Step");
-		
-		ArrayList<String> lStep = new ArrayList<String>();
-		lStep.add("Hook");
-		validTypes.put("Hook", lStep);
-		actualTransitionNames.put("Hook", "Step");
+        addTransition("Step", "Step");
+        addTypeToTransition("Step", "Raiz", 1);
+
+        addTransition("Hook", "Step");
+        addTypeToTransition("Hook", "Hook", 1);
 		
 		//rarer, non-inverted transitions
-		ArrayList<String> doubleleg = new ArrayList<String>();//non-inverted back-punch
-		doubleleg.add("Backside");
-		validTypes.put("Doubleleg", doubleleg);
-		actualTransitionNames.put("Doubleleg", "Punch");
+        addTransition("Doubleleg", "Punch");
+        addTypeToTransition("Doubleleg", "Backside", 1);
 		
-		ArrayList<String> wrap = new ArrayList<String>();//non-inverted carry
-		wrap.add("Carry");
-		validTypes.put("Wrap", wrap);
-		actualTransitionNames.put("Wrap", "Wrap Through");
-		
-		ArrayList<String> vSwing = new ArrayList<String>();//non-inverted swing
-		vSwing.add("Swing");
-		validTypes.put("vSwing", vSwing);
-		actualTransitionNames.put("vSwing", "Swing Through");
-		
+		//non-inverted carry
+        addTransition("Wrap", "Wrap Through");
+        addTypeToTransition("Wrap", "Carry", 1);
+
+        //non-inverted swing
+        addTransition("vSwing", "Swing Through");
+        addTypeToTransition("vSwing", "Swing", 1);
 	}
 	
 	public Combo(Context context){
@@ -124,7 +104,7 @@ public class Combo extends ScrollView implements OnGestureListener{
 		layout.setOrientation(LinearLayout.VERTICAL);
 		addView(layout);
 		gestureDetector = new GestureDetector(context, this);
-        comboName = "Random Combo";
+        comboName = "New Combo";
 	}
 
     public Combo(Context context, String jsonTricks) throws JSONException {
@@ -153,11 +133,18 @@ public class Combo extends ScrollView implements OnGestureListener{
             layout.addView(trickView);
         }
     }
-	
-//	public Combo (Context context, int difficulty){
-//		this(context);
-//		this.difficulty = difficulty;
-//	}
+
+    public static void addTransition(String transitionName, String alias){
+        ArrayList<String> types = new ArrayList<String>();
+        validTypes.put(transitionName,types);
+        actualTransitionNames.put(transitionName, alias);
+    }
+
+    public static void addTypeToTransition(String transitionName, String type, int freq){
+        for(int n = 0; n < freq; n++){
+            validTypes.get(transitionName).add(type);
+        }
+    }
 	
 	//allows user to manually add a move
 	public void addTrick(int index){

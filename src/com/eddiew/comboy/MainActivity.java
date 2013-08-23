@@ -6,10 +6,10 @@ import com.eddiew.comboy.TrickView.AddTricksListener;
 import com.eddiew.comboy.trick.Trick;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.os.Environment;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -27,9 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -92,6 +90,11 @@ public class MainActivity extends Activity implements DialogListener, AddTricksL
 		
 		return super.onCreateOptionsMenu(menu);
 	}
+
+    @Override
+    public void onConfigurationChanged(Configuration config) {
+        super.onConfigurationChanged(config);
+    }
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){

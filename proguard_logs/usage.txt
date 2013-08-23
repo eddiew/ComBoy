@@ -1,0 +1,39 @@
+com.eddiew.comboy.BuildConfig
+com.eddiew.comboy.Combo:
+    private static final java.lang.String trickClassPackage
+    152:152:public void addTrick(int)
+com.eddiew.comboy.ComboView
+com.eddiew.comboy.R
+com.eddiew.comboy.R$attr
+com.eddiew.comboy.R$dimen
+com.eddiew.comboy.R$drawable
+com.eddiew.comboy.R$id
+com.eddiew.comboy.R$layout
+com.eddiew.comboy.R$menu
+com.eddiew.comboy.R$string
+com.eddiew.comboy.R$style
+com.eddiew.comboy.R$xml
+com.eddiew.comboy.SettingsFragment
+com.eddiew.comboy.TrickView:
+    private static final int NAMEVIEWID
+    private static final int TRANSITIONVIEWID
+    private static final int PREFIXBUTTONID
+    private static final int POSTFIXBUTTONID
+com.eddiew.comboy.trick.Aerial
+com.eddiew.comboy.trick.Back
+com.eddiew.comboy.trick.Backside
+com.eddiew.comboy.trick.Butterfly
+com.eddiew.comboy.trick.Carry
+com.eddiew.comboy.trick.Cheat
+com.eddiew.comboy.trick.Front
+com.eddiew.comboy.trick.Gainer
+com.eddiew.comboy.trick.Hook
+com.eddiew.comboy.trick.Pop
+com.eddiew.comboy.trick.Raiz
+com.eddiew.comboy.trick.Swing
+com.eddiew.comboy.trick.Trick:
+    18:18:public java.lang.String getTrickName()
+    21:21:public java.lang.String getTypeName()
+    24:24:public java.util.ArrayList getEnds()
+    32:34:public void pickEnd()
+com.eddiew.comboy.trick.Wrap
