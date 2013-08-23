@@ -141,7 +141,12 @@ public class Combo extends ScrollView implements OnGestureListener{
             }
             trick.trickName = jsonTrick.getString("trickName");
             trick.endName = jsonTrick.getString("endName");
-            trick.transitionName = jsonTrick.getString("transitionName");
+            try{
+            	trick.transitionName = jsonTrick.getString("transitionName");
+            }
+            catch (JSONException e){
+            	trick.transitionName = "";
+            }
             trickList.add(trick);
             TrickView trickView = new TrickView(context, layout, trick);
             layout.addView(trickView);
