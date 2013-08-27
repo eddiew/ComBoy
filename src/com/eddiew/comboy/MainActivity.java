@@ -6,6 +6,7 @@ import com.eddiew.comboy.TrickView.AddTricksListener;
 import com.eddiew.comboy.trick.Trick;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 //import android.app.Activity;//stupid OS compatibility
@@ -117,8 +118,11 @@ public class MainActivity extends FragmentActivity implements DialogListener, Ad
             Toast.makeText(this, saveMsg, Toast.LENGTH_SHORT).show();
             return true;
         case R.id.action_new:
-            combo.clear();
+            combo.clear();//clear / reset the combo AFTER making the new one, so that cancel doesn't get rid of the combo
             showAddTricksDialog(0);
+            return true;
+        case R.id.action_menu:
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
 		default:
 			return super.onOptionsItemSelected(item);

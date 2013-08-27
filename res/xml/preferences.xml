@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference
-            android:key="pref_sync"
-            android:title=""
-            android:summary=""
-            android:defaultValue="true" />
+    <PreferenceCategory
+    android:title="Enable/Disable Tricks"
+    android:key="pref_key_storage_settings">
+        <CheckBoxPreference
+                android:key="Aerial"
+                android:title="Aerials"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Back"
+                android:title="Back Flips"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Backside"
+                android:title="Backside Kicks"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Butterfly"
+                android:title="Butterfly Tricks"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Carry"
+                android:title="Wrap Kicks"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Cheat"
+                android:title="Cheat Kicks"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Front"
+                android:title="Front Flips"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Swing"
+                android:title="Gainers and Corkscrews"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Hook"
+                android:title="Hook Kicks"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Pop"
+                android:title="Pop Kicks"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Raiz"
+                android:title="Raiz Tricks"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="vSwing"
+                android:title="Swing Kicks"
+                android:summary=""
+                android:defaultValue="true" />
+        <CheckBoxPreference
+                android:key="Wrap"
+                android:title="Wrap Twists"
+                android:summary=""
+                android:defaultValue="true" />
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -8,6 +8,8 @@ import java.util.Stack;
 import com.eddiew.comboy.trick.Trick;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
@@ -24,12 +26,13 @@ public class Combo extends ScrollView implements OnGestureListener{
 	private float prevY;
     //view stuff ABSTRACT THIS OUT SOME TIME
     private LinearLayout layout;
+    //settings stuff
+    private SharedPreferences prefs;
 	//everything else
 	private Random random;
 	public ArrayList<Trick> trickList;
 	private Stack<Trick> newTricks;
     public String comboName;
-	//private int difficulty;
 	private static final String trickClassPackage = "com.eddiew.comboy.trick.";
 	private static final ArrayList<String> allTypes = new ArrayList<String>();
 	private static final HashMap<String, ArrayList<String>> validTypes = new HashMap<String, ArrayList<String>>();
@@ -98,6 +101,7 @@ public class Combo extends ScrollView implements OnGestureListener{
 	
 	public Combo(Context context){
 		super(context);
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		trickList = new ArrayList<Trick>();
 		random = new Random();
 		layout = new LinearLayout(context);
@@ -107,7 +111,7 @@ public class Combo extends ScrollView implements OnGestureListener{
         comboName = "New Combo";
 	}
 
-    public Combo(Context context, String jsonTricks) throws JSONException {
+    public Combo(Context context, String jsonTricks) throws JSONException {//check if settings allow the imported combo?
         this(context);
         JSONArray tricks = new JSONArray(jsonTricks);
         comboName = tricks.getString(0);
@@ -167,12 +171,12 @@ public class Combo extends ScrollView implements OnGestureListener{
 		ArrayList<String> possibleTypes = new ArrayList<String>();
 		if(prevEnd != null){
 			for(String type : validTypes.get(prevEnd)){
-				possibleTypes.add(type);
+                if(prefs.getBoolean(type, false)) possibleTypes.add(type);
 			}
 		}
 		else {
 			for(String type : allTypes){
-				possibleTypes.add(type);
+                if(prefs.getBoolean(type, false)) possibleTypes.add(type);
 			}
 		}
 		while(!possibleTypes.isEmpty()){

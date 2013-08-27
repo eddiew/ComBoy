@@ -13,7 +13,7 @@ com.eddiew.comboy.R$menu
 com.eddiew.comboy.R$string
 com.eddiew.comboy.R$style
 com.eddiew.comboy.R$xml
-com.eddiew.comboy.SettingsFragment
+com.eddiew.comboy.SettingsActivity
 com.eddiew.comboy.TrickView:
     private static final int NAMEVIEWID
     private static final int TRANSITIONVIEWID
