@@ -1,6 +1,0 @@
-# view AndroidManifest.xml #generated:25
--keep class com.eddiew.comboy.FileController { <init>(...); }
-
-# view AndroidManifest.xml #generated:16
--keep class com.eddiew.comboy.MainActivity { <init>(...); }
-
